@@ -3,6 +3,8 @@
 
 >Bon résumé des elements: [https://rmolinamir.github.io/typescript-cheatsheet/]
 
+🛑 C'est une revu de typescript mais plusieurs elements ne seront pas couvert durant le cour
+
 >La première chose à réaliser est que TypeScript se compile en JavaScript. Cela signifie que la sortie du compilateur TypeScript peut s'exécuter partout où le code JavaScript peut s'exécuter, ce qui signifie en fait, de nos jours, pratiquement partout, puisque JavaScript peut s'exécuter dans ce qui suit :
 * Web browser
 * Backend (exemple with Node.js)
@@ -142,6 +144,9 @@ console.log(bonjour2(utilisateur2));
 ```
 
 #### 🌼 Types de base de TypeScript
+
+[https://www.typescriptlang.org/docs/handbook/2/everyday-types.html]
+
 > Avant de continuer, voyons quels types de base sont pris en charge par TypeScript:
 
 >boolean: true or false.
@@ -193,6 +198,8 @@ var aaa: any = x+y+z1;
 ### 
 
 # Union
+
+
 
 ```Javascript
 let x_union: string | Boolean;
@@ -348,6 +355,8 @@ vecteur2.push("Salut"); // Detecte par Typescript
 ```
 
 # Interfaces et Objets
+
+[https://www.typescriptlang.org/docs/handbook/2/classes.html]
 
 ```Javascript
 var personne = {
