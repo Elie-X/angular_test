@@ -189,6 +189,8 @@ var aaa: any = x+y+z1;
 
 ### Exercise Types
 ### Exercise Typeof Type
+### Exercise Erreurs
+### 
 
 # Union
 
@@ -314,6 +316,10 @@ function filtre<T>(vecteur:T[], filtre:T): T[] {
   return result;
 }
 ```
+
+### Exercise : Creer une fonction
+### Exercise : Calculatrice
+### Exercise : parametres
 
 # Chaines et vecteurs
 
@@ -515,6 +521,10 @@ retraite.display();
 retraite.displayPrivateAndProtectedOriginal();
 retraite.displayPrivateAndProtected();
 ```
+
+### Exercise: Interface
+### Exercise: Recettes
+
 
 ```Javascript
 
