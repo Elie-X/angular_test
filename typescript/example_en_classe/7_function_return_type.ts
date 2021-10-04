@@ -55,6 +55,17 @@ function abc(params1) {
 param1 => def;
 
 
+// Template
 
+function filtre<T>(vecteur:T[], filtre:T): T[] {
+  let result = []
+  for (let i = 0; i < vecteur.length; i++) {
+        let item = vecteur[i]
+        if (filtre == item) {
+        result.push(item)
+    }
+  }
+  return result;
+}
 
 
