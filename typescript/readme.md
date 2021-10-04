@@ -112,25 +112,7 @@ Code| Définition| Année |
 
 > ECMAScript est un langage de script qui forme la base de JavaScript. ECMAScript est standardisé par l'organisation ECMA International grâce aux spécifications ECMA-262 et ECMA-402.
 ***
-#### 🌼 Types de base de TypeScript
-> Avant de continuer, voyons quels types de base sont pris en charge par TypeScript:
 
->boolean: true or false.
->number: Valeurs à virgule flottante. Ceux-ci peuvent être exprimés sous forme hexadécimale, décimale, binaire et octale.
->string: peuvent être délimités par des guillemets simples ('), des guillemets doubles (") ou des graduations inverses (`) pour définir les littéraux de modèle (template String).
-
-Voici quelques exemples de nombres:
->* let decimal: number = 42
->* let hexadecimal: number = 0x42
->* let binary: number = 0b101010
->* let octal: number = 0o52
-
-Voici quelques exemples de String :
-* let hello: string = 'Hello'
-* let world: string = "World"
-* let cool: string = `${hello} ${world}!`
-
-![Types en Typescript ref: Programming TypeScript By Boris Cherny](types.png)
 
 ```Javascript
 console.log("Bonjour");
@@ -158,6 +140,26 @@ console.log(bonjour(utilisateur2));
 console.log(bonjour2(utilisateur2));
 // Peut etre contourne..
 ```
+
+#### 🌼 Types de base de TypeScript
+> Avant de continuer, voyons quels types de base sont pris en charge par TypeScript:
+
+>boolean: true or false.
+>number: Valeurs à virgule flottante. Ceux-ci peuvent être exprimés sous forme hexadécimale, décimale, binaire et octale.
+>string: peuvent être délimités par des guillemets simples ('), des guillemets doubles (") ou des graduations inverses (`) pour définir les littéraux de modèle (template String).
+
+Voici quelques exemples de nombres:
+>* let decimal: number = 42
+>* let hexadecimal: number = 0x42
+>* let binary: number = 0b101010
+>* let octal: number = 0o52
+
+Voici quelques exemples de String :
+* let hello: string = 'Hello'
+* let world: string = "World"
+* let cool: string = `${hello} ${world}!`
+
+![Types en Typescript ref: Programming TypeScript By Boris Cherny](types.png)
 
 # Example of type
 
