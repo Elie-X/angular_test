@@ -116,11 +116,7 @@ Code| Définition| Année |
 ***
 
 
-```Javascript
-console.log("Bonjour");
-```
-
-###  Exercise : compilateur
+###  Exercise : [compilateur](execises/compilateur/)
 
 ```Javascript
 function bonjour(personne) {
