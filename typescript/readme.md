@@ -221,7 +221,7 @@ type CatOrDogOrBoth = Cat | Dog;
 type CatAndDog = Cat & Dog;
 ```
 
-# Union
+# Enum
 
 ```Javascript
 const enum Langue {
