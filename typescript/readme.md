@@ -116,7 +116,7 @@ Code| Définition| Année |
 ***
 
 
-###  Exercise : [compilateur](execises/compilateur/)
+###  Exercise : [compilateur](/typescript/execises/compilateur/)
 
 ```Javascript
 function bonjour(personne) {
