@@ -116,7 +116,7 @@ Code| Définition| Année |
 ***
 
 
-###  Exercise : [compilateur](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises)
+###  Exercise : [compilateur](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/compilateur)
 
 ```Javascript
 function bonjour(personne) {
@@ -188,9 +188,9 @@ var z1 = false;
 var aaa: any = x+y+z1;
 ```
 
-### Exercise [Types](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Types)
-### Exercise [Typeof Type](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Typeof Type)
-### Exercise [Erreurs](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Erreurs)
+### Exercise [Types](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Types)
+### Exercise [Typeof Type](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Typeof%20Type)
+### Exercise [Erreurs](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Erreurs)
 ### 
 
 # Union
@@ -340,9 +340,9 @@ function filtre<T>(vecteur:T[], filtre:T): T[] {
 }
 ```
 
-### Exercise : [Creer une fonction](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Creer un fonction)
-### Exercise : [Calculatrice](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Calculatrice)
-### Exercise : [parametres](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/parametres)
+### Exercise : [Creer une fonction]((https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Creer%20un%20fonction)
+### Exercise : [Calculatrice](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Calculatrice)
+### Exercise : [parametres](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/parametres)
 
 # Chaines et vecteurs
 
@@ -547,8 +547,8 @@ retraite.displayPrivateAndProtectedOriginal();
 retraite.displayPrivateAndProtected();
 ```
 
-### Exercise: [Interface](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Interface)
-### Exercise: [Recettes](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/Recettes)
+### Exercise: [Interface](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Interface)
+### Exercise: [Recettes](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Recettes)
 
 
 ```Javascript
