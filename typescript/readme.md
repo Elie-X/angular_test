@@ -221,6 +221,26 @@ type CatOrDogOrBoth = Cat | Dog;
 type CatAndDog = Cat & Dog;
 ```
 
+# Union
+
+```Javascript
+const enum Langue {
+    Francais,
+    Anglais,
+    Latin
+    // Other definition
+    
+}
+
+let a = Langue.Latin
+console.log(a);
+
+let b = Langue.Typescript
+
+let c = Langue[2]
+```
+
+
 # Boucle
 
 ```Javascript
