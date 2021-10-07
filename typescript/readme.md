@@ -378,23 +378,20 @@ console.log(res);
 
 ## never
 
-```Javascript
-```
-
-## 
+Indique une fonction qui ne termine jamais.
 
 ```Javascript
-```
+// (d) A function that returns never
+function d() {
+  throw TypeError('I always error')
+}
 
-## 
-
-```Javascript
-```
-
-## 
-
-
-```Javascript
+// (e) Another function that returns never
+function e() {
+  while (true) {
+    doSomething()
+  }
+}
 ```
 
 # Array
@@ -505,6 +502,42 @@ let b = Langue.Typescript
 let c = Langue[2]
 ```
 
+```Javascript
+enum Language {
+  English = 0,
+  Spanish = 1
+}
+
+enum Language {
+  Russian = 2
+}
+```
+
+```Javascript
+enum Language {
+  English = 100,
+  Spanish = 200 + 300,
+  Russian                 // TypeScript infers 501 (the next number after 500)
+}
+```
+
+```Javascript
+enum Color {
+  Red = '#c10000',
+  Blue = '#007ac1',
+  Pink = 0xc10050,        // A hexadecimal literal
+  White = 255             // A decimal literal
+}
+
+let red = Color.Red       // Color
+let pink = Color.Pink     // Color
+
+let a = Color.Red         // Color
+let b = Color.Green       // Error TS2339: Property 'Green' does not exist
+                          // on type 'typeof Color'.
+let c = Color[0]          // string
+let d = Color[6]          // string (!!!)
+```
 
 # Boucle
 
