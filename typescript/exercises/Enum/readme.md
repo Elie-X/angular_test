@@ -11,15 +11,12 @@ tsc --init
 4. Compile the `squares.ts` file using 
 
 ```bash
-tsc squares.ts
+tsc enum.ts
 ```
 
-5. Compile the `squares.ts` file using ES6 targets
+5. executer le code
 ```bash
-tsc --target es6 squares.ts
+node enum.js
 ```
 
-6. Compile the `squares.ts` file using ES5 targets
-```bash
-tsc --target es5 squares.ts
-```
+6. Modifier le enum pour les definir avec des chaines
