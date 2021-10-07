@@ -539,6 +539,8 @@ let c = Color[0]          // string
 let d = Color[6]          // string (!!!)
 ```
 
+### Execise [Enums](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Enum)
+
 # Boucle
 
 ```Javascript
@@ -642,7 +644,7 @@ function filtre<T>(vecteur:T[], filtre:T): T[] {
 }
 ```
 
-### Exercise : [Creer une fonction]((https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Creer%20un%20fonction)
+### Exercise : [Creer une fonction](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Creer%20un%20fonction)
 ### Exercise : [Calculatrice](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Calculatrice)
 ### Exercise : [parametres](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/parametres)
 
