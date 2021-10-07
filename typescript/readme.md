@@ -193,9 +193,278 @@ var aaa: any = x+y+z1;
 ### Exercise [Erreurs](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Erreurs)
 ### 
 
+# Types
+
+## Any
+
+N'importe qu'elle type est possible. À utiliser uniquement si impossible de faire autrement. Est-ce qu'un union de type est possible pour régler le problème?
+
+```Javascript
+let a: any = 666            // any
+let b: any = ['danger']     // any
+let c = a + b               // any
+```
+
+## Unknown
+
+
+
+```Javascript
+let a: unknown = 30         // unknown
+let b = a === 123           // boolean
+let c = a + 10              // Error TS2571: Object is of type 'unknown'.
+if (typeof a === 'number') {
+  let d = a + 10            // number
+                            // Pourquoi?!
+}
+```
+
+## boolean
+
+```Javascript
+let a = true                // boolean
+var b = false               // boolean
+const c = true              // true
+let d: boolean = true       // boolean
+let e: true = true          // true
+let f: true = false         // Error TS2322: Type 'false' is not assignable
+                            // to type 'true'.
+```
+
+## number
+
+Limit a une valeur maximal de 2^53
+
+```Javascript
+let a = 1234                // number
+var b = Infinity * 0.10     // number
+const c = 5678              // 5678
+let d = a < b               // boolean
+let e: number = 100         // number
+let f: 26.218 = 26.218      // 26.218
+let g: 26.218 = 10          // Error TS2322: Type '10' is not assignable
+                            // to type '26.218'.
+```
+
+## bigint
+
+Bigint n'est pas toujours supporté par certain navigateur.
+
+```Javascript
+let a = 1234n               // bigint
+const b = 5678n             // 5678n
+var c = a + b               // bigint
+let d = a < 1235            // boolean
+let e = 88.5n               // Error TS1353: A bigint literal must be an integer.
+let f: bigint = 100n        // bigint
+let g: 100n = 100n          // 100n
+let h: bigint = 100         // Error TS2322: Type '100' is not assignable
+                            // to type 'bigint'.
+```
+
+## string
+
+```Javascript
+let a = 'hello'             // string
+var b = 'billy'             // string
+const c = '!'               // '!'
+let d = a + ' ' + b + c     // string
+let e: string = 'zoom'      // string
+let f: 'john' = 'john'      // 'john'
+let g: 'john' = 'zoe'       // Error TS2322: Type "zoe" is not assignable
+                            // to type "john".
+```
+
+## Symbol
+
+```Javascript
+let a = Symbol('a')         // symbol
+let b: symbol = Symbol('b') // symbol
+var c = a === b             // boolean
+let d = a + 'x'             // Error TS2469: The '+' operator cannot be applied
+                            // to type 'symbol'.
+```
+
+## Objects
+
+```Javascript
+let a = {
+  b: 'x'
+}            // {b: string}
+a.b          // string
+
+let b = {
+  c: {
+    d: 'f'
+  }
+}            // {c: {d: string}}
+
+let c: {
+  firstName: string
+  lastName: string
+} = {
+  firstName: 'john',
+  lastName: 'barrowman'
+}
+
+class Person {
+  constructor(
+    public firstName: string,   // public is shorthand for
+                                // this.firstName = firstName
+    public lastName: string
+  ) {}
+}
+c = new Person('matt', 'smith') // OK
+```
+
+## null
+
+Permet d'indiquer l'absence de valeur
+
+```Javascript
+// (a) A function that returns a number or null
+function a(x: number) {
+  if (x < 10) {
+    return x
+  }
+  return null
+}
+```
+
+## Undefined
+
+Permet d'indiqué que l'élément n'est pas défini. null et undefined sont pareils la différence vient du contexte.
+
+```Javascript
+// (b) A function that returns undefined
+function fb() {
+  return undefined
+}
+
+let a=null;
+let b=undefined;
+let c: null=undefined;
+let d: undefined=null;
+
+console.log('a===b', a===b);  // false
+console.log('a===c', a===c);  // false
+console.log('a===d', a===d);  // true
+
+console.log('a==b', a==b);    // true
+console.log('a==c', a==c);    // true
+console.log('a==d', a==d);    // true
+```
+
+## void
+
+Une fonction qui ne doit pas retouner d'information
+
+```Javascript
+// (c) A function that returns void
+let res: number;
+
+function c(): void {
+    let a = 2 + 2
+    let b = a * a
+
+    // return a;   // error TS2322: Type 'number' is not assignable to type 'void'.
+  }
+
+c();
+res = c(); // error TS2322: Type 'void' is not assignable to type 'number'.
+
+console.log(res);
+```
+
+## never
+
+```Javascript
+```
+
+## 
+
+```Javascript
+```
+
+## 
+
+```Javascript
+```
+
+## 
+
+
+```Javascript
+```
+
+# Array
+
+Permet de créer un vecteur d'élément du type specifié 
+
+```Javascript
+let a = [1, 2, 3]           // number[]
+var b = ['a', 'b']          // string[]
+let c: string[] = ['a']     // string[]
+let d = [1, 'a']            // (string | number)[]
+const e = [2, 'b']          // (string | number)[]
+
+let f = ['red']
+f.push('blue')
+f.push(true)                // Error TS2345: Argument of type 'true' is not
+                            // assignable to parameter of type 'string'.
+
+let g = []                  // any[]
+g.push(1)                   // number[]
+g.push('red')               // (string | number)[]
+
+let h: number[] = []        // number[]
+h.push(1)                   // number[]
+h.push('red')               // Error TS2345: Argument of type '"red"' is not
+                            // assignable to parameter of type 'number'.
+```
+
+# Tupple
+
+Vecteur qui contient un nombre spécifique d'éléments
+
+```Javascript
+let a: [number] = [1]
+
+// A tuple of [first name, last name, birth year]
+let b: [string, string, number] = ['malcolm', 'gladwell', 1963]
+
+b = ['queen', 'elizabeth', 'ii', 1926]  // Error TS2322: Type 'string' is not
+                                        // assignable to type 'number'.
+```
+
+## Read Only
+
+Array et Tupple peuve être typé comme readonly.
+
+```Javascript
+let as: readonly number[] = [1, 2, 3]     // readonly number[]
+let bs: readonly number[] = as.concat(4)  // readonly number[]
+let three = bs[2]                         // number
+as[4] = 5            // Error TS2542: Index signature in type
+                     // 'readonly number[]' only permits reading.
+as.push(6)           // Error TS2339: Property 'push' does not
+                     // exist on type 'readonly number[]'.
+```
+
+# Alias
+
+```Javascript
+type Age = number
+
+type Person = {
+  name: string
+  age: Age
+}
+```
+
 # Union
 
-
+Permet de combiner des types.
 
 ```Javascript
 let x_union: string | Boolean;
