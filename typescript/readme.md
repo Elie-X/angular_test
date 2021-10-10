@@ -674,6 +674,27 @@ let vecteur2: Number[] = [1, 2, 3, 4, 5, 6];
 vecteur2.push("Salut"); // Detecte par Typescript
 ```
 
+# Rest / Spread Operator
+
+Permet de referencer un vecteur ou une classe.
+
+```Javascript
+const newItem = 3;
+
+const oldArray = [1, 2];
+
+const newArray = [...oldArray, newItem]; // Maintenant [1, 2, 3]
+```
+
+Fonctionne aussi pour une classe
+
+```Javascript
+const oldPerson = { name : 'Didier' };
+const newPerson = { ...oldPerson, age : 42 };
+```
+
+Le spread équivaut a retourner tous les élément du vecteur ou de la classe.
+
 # Interfaces et Objets
 
 [https://www.typescriptlang.org/docs/handbook/2/classes.html]
@@ -684,10 +705,9 @@ var personne = {
     nom_de_famille: 'Tremblay',
     age: 42,
     nom_complet: function () {
-        return this.prenom + ' ' + this.nom_de_famille;
+        return `${this.prenom} ${this.nom_de_famille}`;
     }
 }
-
 
 console.log(personne.nom_complet());
 
@@ -852,8 +872,322 @@ retraite.displayPrivateAndProtected();
 ```
 
 ### Exercise: [Interface](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Interface)
+
+# Decorateur
+
+Decorateur permet de changer un élément en modifiant ses paramètres d'entrées et ou de sortie. Il est possible de créer des décorateurs pour une Classe, propriété, méthodes ou paramêtres.
+
+## Class decorator
+
+Augmente une classe ou effectue un operation sur ses attributs. Le décorateur de classe est éxécuté avant que la classe soit matérialisée. Le décorateur est une fonction qui recoit un pointeur sur le constructure de la classe.
+
+```Javascript
+declare type ClassDecorator = <TFunction extends Function>(Target:TFunction) => TFunction | void;
+```
+
+Example:
+
+```Javascript
+function Banana(target: Function): void {
+    target.prototype.banana = function(): void {
+        console.log('We have bananas!');
+    }
+}
+
+@Banana
+class FruitBasket {
+    constructor() {}
+}
+
+const basket = new FruitBasket();
+basket.banana();
+```
+
+Peut aussi avoir des paramètres:
+
+```Javascript
+function Banana(message: string) {
+    return function(target: Function) {
+        target.prototype.banana = function(): void {
+            console.log(message);
+        }
+    }
+}
+
+@Banana('Bananas are yellow!')
+class FruitBasket {
+    constructor() {}
+}
+```
+
+## Property Decorator
+
+```Javascript
+function Jedi(target: Object, key: string) {
+    let propertyValue: string = this[key];
+    if (delete this[key]) {
+        Object.defineProperty(target, key, {
+            get: function() {
+                return propertyValue;
+            },
+            set: function(newValue){
+                propertyValue = newValue;
+                console.log(`${propertyValue} is a Jedi`);
+            }
+        });
+    }
+}
+
+class Character {
+    @Jedi
+    name: string;
+}
+
+const character = new Character();
+character.name = 'Luke';
+```
+
+Example avec Paramètre
+
+```Javascript
+function NameChanger(callbackObject: any): Function {
+    return function(target: Object, key: string): void {
+        let propertyValue: string = this[key];
+        if (delete this[key]) {
+            Object.defineProperty(target, key, {
+                get: function() {
+                    return propertyValue;
+                },
+                set: function(newValue) {
+                    propertyValue = newValue;
+                    callbackObject.changeName.call(this, propertyValue);
+                }
+            });
+        }
+    }
+}
+
+class Character {
+    @NameChanger ({
+        changeName: function(newValue: string): void {
+            console.log(`You are now known as ${newValue}`);
+        }
+    })
+    name: string;
+}
+
+var character = new Character();
+character.name = 'Anakin';
+```
+
+## Method decorators
+
+```Javascript
+function Log(){
+    return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+        const oldMethod = descriptor.value;
+        descriptor.value = function newFunc( ...args:any[]){
+            let result = oldMethod.apply(this, args);
+            console.log(`${propertyKey} is called with ${args.join(',')} and result ${result}`);
+            return result;
+        }
+    }
+}
+
+class Hero {
+    @Log()
+    attack(...args:[]) { return args.join(); }
+}
+
+const hero = new Hero();
+hero.attack();
+```
+
+NOTE: [Apply](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
+
+## Parameter decorator
+
+Ne doit pas modifier le parametre. Plus utilise dans des scenarios de retourner de l'information.
+
+```Javascript
+function Log(target: Function, key: string, parameterIndex: number) {
+    const functionLogged = key || target.prototype.constructor.name;
+    console.log(`The parameter in position ${parameterIndex} at ${functionLogged} has been decorated`);
+}
+
+class Greeter {
+    greeting: string;
+    
+    constructor (@Log phrase: string) {
+        this.greeting = phrase;
+    }
+}
+```
+
 ### Exercise: [Recettes](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Recettes)
 
+> *Important* pour cette execise vous devez sousmettre votre travail dans le repertoire GIT (le répertoire `pratique-pour-tp` pas le materiel de cours)
+
+# Export et Module
+
+Export permet de rendre une class visible pour un autre fichier
+
+```Javascript
+export class MyService {
+    getData() {}
+}
+
+export const PI = 3.14;
+```
+
+Import permet d'inclure un fichier pour utiliser un service qui fut exporté
+
+```Javascript
+import { MyService, PI } from './my-service'; 
+```
+
+# UML
+
+## planUML
+
+### Exercise
+> Recréez ce diagram en utilisant PlanUML. Poussez votre réalisation dans le project `pratrique-pour-tp/exercises/UMLetClasses` . Ensuite creer un fichier typescript qui représente les différentes relations. Soumettre le fichier dans GIT lorsque terminé. 
+
+![Last year exam](UML2020.png)
+
+Dans ce diagramme la référence circulaire sur Enterprise fut utilisé pour denonter un Singleton. Dans plantUML un singleton utilise une approche différente.
+
+### PlantUML
+[PlanUML](https://plantuml.com/fr/class-diagram)
+
+## Relations vs Typescript
+
+![Relations](relations.png)
+
+### Composition
+
+Une classe qui contient des instances d'une autre classe.
+
+```Javascript
+class Directory {
+  files: File[];
+  directories: Directory[];
+
+  constructor(files: File[], directories: Directory[]) {
+    this.files = files;
+    this.directories = directories;
+  }
+
+  addFile(file: File): void {
+      this.files.push(file);
+  }
+
+  addDir(directory: Directory): void {
+    this.directories.push(directory);
+  }
+}
+```
+
+### Association
+
+Object qui contient une référence envers un autre object.
+
+```Javascript
+models for Blog and Author:
+class Blog implements Identifiable<string> {
+    id: string;
+    authorId: string;
+    constructor(id: string, authorId: string) {
+        this.id = id;
+        this.authorId = authorId;
+    }
+}
+
+class Author {}
+```
+
+### Aggregation
+
+Similaire a une association ou les deux entités peux exister indépendament de chacune.
+
+```Javascript
+class QueryBuilder {}
+
+class EmptyQueryBuilder extends QueryBuilder {}
+
+interface SearchParams {
+  qb?: QueryBuilder;
+  path: string;
+}
+
+class SearchService {
+  queryBuilder?: QueryBuilder;
+  path: string;
+  constructor({ qb = EmptyQueryBuilder, path }:
+    SearchParams) {
+    this.queryBuilder = qb;
+    this.path = path;
+  }
+}
+```
+
+### Héritage (extends)
+
+```Javascript
+class BaseClient {}
+class UsersApiClient extends BaseClient {}  
+```
+
+### Private, protected, public
+
+![Scope](scope.png)
+
+```Javascript
+class SSHUser {
+  private privateKey: string;
+  public publicKey: string;
+  constructor(prvKey: string, pubKey: string) {
+    this.privateKey = prvKey;
+    this.publicKey = pubKey;
+  }
+
+  public getBase64(): string {
+    return Buffer.from(this.publicKey).toString
+      ("base64");
+  }
+}
+```
+
+
+🌼 Tableau de conversion (passage) du diagramme au code Typescript
+
+| Formes       | Définition          | Code Typescript  | Remarques |
+|-------------| ------------- | ----- | ----- |
+|A ![](imag2.jfif)  B   | Héritage | class A **extends** B |  B est la classe Parent |
+|A ![](imag5.jfif)  B   | Implémentation| class A **implements** B | B est une interface  |
+|  | | |
+|A ![](imag1.jfif)  B   | Association| class A **utilise** B ou l'inverse | Il y a 3 types d'associations|
+|  | | |
+|A ![](imag3.jfif)  B   | Composition| class A **est un attribut** de class B et doit être instancié dans tout constructeur de B | Aucune remarque |
+|A ![](imag4.jfif)  B   | Agrégation| class A **est un attribut** de class B et il n'y a pas besoin de l'instancier dans tout constructeur de B | Aucune remarque |
+|  | | |
+
+🌼 Les différents types d'associations :
+
+| Formes      | Définition          | Code Typescript  | Remarques |
+|-------------| ------------- | ----- | ----- |
+|A ![](OneToOne.jfif)  B   | **OneToOne** | class A est **en relation 1 à 1** avec B |  On a le choix dans le code [Soit A devient un attribut dans B ou l'inverse]  | 
+|A ![](OneToMany.jfif)  B   | **OneToMany** | class A est **en relation 1 à plusieurs** avec B | Dans le code la classe A aura un attribut **DE TYPE TABLEAU de B** |
+|A ![](ManyToMany.jfif)  B   | **ManyToMany** | class A est **en relation plusieurs à plusieurs** avec B | Dans le code, on crée une nouvelle classe AB qui aura au moins 2 attributs **[un de l'objet A et un de l'objet B]** |
+|  | | |
+
+```Typescript
+> Une astuce pour valider le passage du diagramme de classes vers le code Typescript.
+> Il faut s'assurer que le nombre de classes Typescript soit **SUPÉRIEUR OU ÉGAL** au nombre de classes du diagramme.
+   > Quand est-ce qu'il est supérieur ? 
+   > Le seul cas est lors de présence de relation ManyToMany (qui implique la création d'une classe associative).
+```
+
 
 ```Javascript
 
@@ -863,42 +1197,81 @@ retraite.displayPrivateAndProtected();
 
 ```
 
-```Javascript
 
-```
 
-```Javascript
-
-```
+### Abstract Class
 
 ```Javascript
-
+abstract class Base {
+  abstract getName(): string;
+ 
+  printName() {
+    console.log("Hello, " + this.getName());
+  }
+}
+ 
+const b = new Base();
+// Cannot create an instance of an abstract class.
 ```
+
+### Singleton
 
 ```Javascript
+/**
+ * The Singleton class defines the `getInstance` method that lets clients access
+ * the unique singleton instance.
+ */
+class Singleton {
+    private static instance: Singleton;
 
+    /**
+     * The Singleton's constructor should always be private to prevent direct
+     * construction calls with the `new` operator.
+     */
+    private constructor() { }
+
+    /**
+     * The static method that controls the access to the singleton instance.
+     *
+     * This implementation let you subclass the Singleton class while keeping
+     * just one instance of each subclass around.
+     */
+    public static getInstance(): Singleton {
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
+        }
+
+        return Singleton.instance;
+    }
+
+    /**
+     * Finally, any singleton should define some business logic, which can be
+     * executed on its instance.
+     */
+    public someBusinessLogic() {
+        // ...
+    }
+}
+
+/**
+ * The client code.
+ */
+function clientCode() {
+    const s1 = Singleton.getInstance();
+    const s2 = Singleton.getInstance();
+
+    if (s1 === s2) {
+        console.log('Singleton works, both variables contain the same instance.');
+    } else {
+        console.log('Singleton failed, variables contain different instances.');
+    }
+}
+
+clientCode();
 ```
 
-```Javascript
-
-```
-
-```Javascript
-
-```
-
-```Javascript
-
-```
-
-```Javascript
-
-```
-
-```Javascript
-
-```
-
+### Execise
+> Dans le répertoire interfaces que vous avez créez dans un exercise précédent. Créer le UML pour les deux interfaces que vous avez réalisé
 
 
 # Autre materiel a mettre en ordre
