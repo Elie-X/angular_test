@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <textarea name="payload" id="payload" cols="30" rows="10"></textarea>
+
+        <script>
+        $.get(
+            {
+                url: 'http://34.125.7.113/v1/recipes.json',
+                success: function (response) {
+                    console.log(response);
+                    $('#payload').text(JSON.stringify(response.data));
+                }}
+            );
+        </script>
+
+    </div>
+</body>
+</html>
