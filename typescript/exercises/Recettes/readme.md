@@ -17,7 +17,7 @@
    * Date de retour
    * Une liste d'activité qui on un nom, description, lieu, date, couts/depense, des photos avec commentaires
 5. Creer une class qui implement votre interface
-6. Appeler le contructeur de votre classe pour creer trois recette
-7. Mettre dans votre classe un method display() qui affiche les recettes et voyages que vous avez cree
+6. Appeler le contructeur de votre classe pour creer trois recettes
+7. Mettre dans votre classe une method display() qui affiche les recettes et voyages que vous avez cree
 8. Poussez ce que vous avez fait de l'execise dans le répertoire GIT
    
