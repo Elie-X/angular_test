@@ -10,12 +10,12 @@
 </head>
 <body>
     <div>
-        <textarea name="payload" id="payload" cols="30" rows="10"></textarea>
+        <pre id="payload"></pre>
 
         <script>
         $.get(
             {
-                url: 'http://34.125.7.113/v1/recipes.json',
+                url: 'http://34.83.63.118/v1/recipes.json',
                 success: function (response) {
                     console.log(response);
                     $('#payload').text(JSON.stringify(response.data));

@@ -871,6 +871,99 @@ retraite.displayPrivateAndProtectedOriginal();
 retraite.displayPrivateAndProtected();
 ```
 
+
+#### 🌼 Classes, interfaces et héritage
+🌿 Anatomie d'une classe
+> Les attributs d'une classe viennent en premier, puis un constructeur et plusieurs méthodes et accesseurs de propriété suivent. 
+> Tous les membres et méthodes sont annotés avec un type, à l'exception du constructeur. L'extrait de code suivant illustre à quoi pourrait ressembler une classe:
+
+```typescript
+class Car {
+    private distance: number = 0;
+    private color: string;
+    
+    constructor(private isHybrid: boolean, color: string ='red') {
+        this.color = color;
+    }
+    
+    getConsommationEssence(): string {
+        return this.isHybrid ? 'Faible Conso' : 'Forte Conso!';
+    }
+    
+    drive(trajet: number): void {
+        this.distance += trajet;
+    }
+    
+    static immatriculation(): string {
+        return 'ABCD-1234!';
+    }
+    
+   get distance(): number {
+        return this.distance;
+    }
+}
+```
+
+🌿  Constructeur : 
+> Le constructeur s'exécute immédiatement lorsque nous créons une instance de la classe. Habituellement, nous voulons initialiser les membres de la classe ici, avec les données fournies dans la signature du constructeur. Nous pouvons également exploiter la signature du constructeur elle-même pour déclarer les membres de la classe, comme nous l'avons fait avec la propriété isHybrid. Pour ce faire, nous devons préfixer le paramètre constructeur avec un modificateur d'accès tel que privé ou public. Comme nous l'avons vu lors de l'analyse des fonctions dans les sections précédentes, nous pouvons définir des paramètres repos, optionnels ou par défaut, comme illustré dans l'exemple précédent avec l'argument color, qui revient au rouge lorsqu'il n'est pas explicitement défini.
+
+***
+#### 🌼 Les Getters et Setters
+> Les Getters et les Setters sont utilisés pour protéger vos données, en particulier lors de la création de classes.
+
+> Pour chaque variable d'instance, une méthode getter renvoie sa valeur tandis qu'une méthode setter définit ou met à jour sa valeur. Compte tenu de cela, les getters et les setters sont également appelés accesseurs et mutateurs, respectivement.
+
+> Par convention, les getters commencent par le mot "get" et les setters par le mot "set", suivi d'un nom de variable. Dans les deux cas, la première lettre du nom de la variable est en majuscule
+***
+
+```Javascript
+class Person {
+  private _age!: number;
+  private _firstName!: string;
+  private _lastName!: string;
+
+
+  public get age(): number {
+      return this._age;
+  }
+
+  public set age(theAge: number) {
+      if (theAge <= 0 || theAge >= 200) {
+          throw new Error('The age is invalid');
+      }
+      this._age = theAge;
+  }
+
+  public getFullName(): string {
+      return `${this._firstName} ${this._lastName}`;
+  }
+}
+
+let my_person = new Person()
+
+my_person.age = 0; // Will fail with exception
+```
+
+#### 🌼 Les interfaces
+> Au fur et à mesure que les applications évoluent et que de plus en plus de classes et de constructions sont créées, nous devons trouver des moyens d'assurer la cohérence et la conformité des règles dans notre code. L'un des meilleurs moyens de gérer la cohérence et la validation des types consiste à créer des interfaces. 
+
+> En un mot, une interface est un modèle du code qui définit le schéma d'un champ particulier. Tous les artefacts (classes, signatures de fonction, etc.) qui implémentent ces interfaces doivent être conformes à ce schéma. Cela devient utile lorsque nous voulons appliquer un typage strict sur les classes générées par des usines, ou lorsque nous définissons des signatures de fonction pour nous assurer qu'une propriété typée particulière est trouvée dans la charge utile.
+
+> Dans le code suivant, nous définissons l'interface Voiture. Ce n'est pas une classe, mais un schéma contractuel auquel toute classe qui l'implémente doit se conformer:
+
+```typescript
+interface Voiture{
+    moteur: string;
+}
+
+Toute classe implémentant cette interface doit contenir un attribut nommé moteur, qui doit être saisi sous forme de chaîne:
+
+class Toyota implements Voiture{
+    moteur: string;
+}
+```
+*** 
+
 ### Exercise: [Interface](https://github.com/420-345-AL/materiel_du_cours/tree/master/typescript/exercises/Interface)
 
 # Decorateur

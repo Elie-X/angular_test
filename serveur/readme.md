@@ -32,9 +32,19 @@
 
 Une API REST se doit d’être sans état `stateless `. La communication entre le client et le serveur ne doit pas dépendre d’un quelconque contexte provenant du serveur. Ainsi, chaque requête doit contenir l’ensemble des informations nécessaires à son traitement. Cela permet au de traiter indifféremment les requêtes de plusieurs clients via de multiples instances de serveurs.
 
+# Status Code
 
+Pour chaque réponse renvoyée par l’API, un code doit être envoyé, ce code correspond à l’état de la requête et dépend de la réussite ou non de celle-ci. 
 
-Pour chaque réponse renvoyée par l’API, un code doit être envoyé, ce code correspond à l’état de la requête et dépend de la réussite ou non de celle-ci. Les codes status les plus courants que l’on retrouve généralement sur le web sont :
+Reference : [HTTP Status Code](https://developer.mozilla.org/fr/docs/Web/HTTP/Status)
+
+Les codes status les plus courants que l’on retrouve généralement sur le web sont :
+
+# 100
+Signal intermediare pour une operation. L'operation n'est pas terminé et les status 1xx permet au server d'indiqué une étape dans un processus non complété
+
+# 200
+Success pour une opération
 
 🔸  200 OK : Tout s'est bien passé
 
@@ -42,7 +52,17 @@ Pour chaque réponse renvoyée par l’API, un code doit être envoyé, ce code 
 
 🔸 204 No content : Même principe que pour la 201, sauf que cette fois-ci, le contenu de la ressource nouvellement créée ou modifiée n'est pas renvoyée en réponse
 
+# 300
+Changement de source. Permet au serveur de retourné une information sur la requêtes mais qui n'est pas la resource demandé
+
+🔸 301 Moved Permanently : La resource demandé de trouvé à un autre URL le serveur specifie que le client doit utlisé la nouvelle location pour les requêtes future.
+
+🔸 302 Found : La resource doit être trouvé à une location différente. Cette redirection est temporaire et ne sera pas conservé par la client.
+
 🔸 304 Not modified : Le contenu n'a pas été modifié depuis la dernière fois qu'elle a été mise en cache
+
+# 400
+La zone d'erreur 400 est pour les erreurs dans la requête du client. Le serveur n'est pas en faut mais ne peut satisfaire la requete du client.
 
 🔸 400 Bad request : La demande n'a pas pu être traitée correctement
 
@@ -56,7 +76,16 @@ Pour chaque réponse renvoyée par l’API, un code doit être envoyé, ce code 
 
 🔸 406 Not acceptable : L’API est dans l’incapacité de fournir le format demandé par les en têtes Accept. Par exemple, le client demande un format (XML par exemple) et l'API n'est pas prévue pour générer du XML
 
+🔸 418 : :)
+
+# 500
+Le serveur a recontré un erreur dans le traitement de la requête.
+
 🔸 500 Server error : Le serveur a rencontré un problème.
+
+🔸 502 Bad Gateway : L'application ne peux être contacté par le webserver
+
+🔸 504 Gateway Timeout : Le délai maximal pour recevoir la réponse de l'application est dépassé
 
 # Creation d'un serveur dans Google Cloud
 
@@ -84,7 +113,13 @@ Server vs Container?
   * Essayons
   * Essayons dans un application
   * Montrer CORS
-  * 
+
+# CORS (Cross-Origin resource sharing)
+
+[CORS reference](https://developer.mozilla.org/fr/docs/Web/HTTP/CORS)
+
+Règle permettant au serveur d'informer aux clients si ils peuvent avoir confiance et utiliser les données retournées par le serveur.
+
 * App service vs WebServer
   * Install nginx
 
