@@ -52,6 +52,28 @@ La CLI Angular fait partie de l'écosystème Angular et est disponible au télé
 
 >### [Lien vers l'API Faker](http://marak.github.io/faker.js/#toc2__anchor)
 
+# Tour d'horizon d'Angular
+
+## DIDIER TO ADD
+
+- [ ] Review des fichiers de base
+- [ ] Components
+- [ ] Add Bootstrap 
+- [ ] Model
+- [ ] Service
+- [ ] Directive
+- [ ] Interpolation
+- [ ] Data Binding
+- [ ] CSS
+- [ ] Execises Components
+- [ ] Execises Data Binding
+- [ ] Exercise Graph
+- [ ] Form Validation methods
+- [ ] Service
+- [ ] Testing
+- [ ] 
+
+
 # MVC
 
 🌿 Component, Templates, Interpolation, et Directives ?
@@ -203,7 +225,7 @@ La séparation des préoccupations (besoins ou exigences) est la principale rais
 
 ♣️ Dès qu'une réponse était reçue du serveur, le navigateur rechargeait la page. Ce processus a entraîné des retards aller-retour et une mauvaise expérience utilisateur pour nos applications :
 
-![](https://github.com/zaratechs/reda/blob/master/Capture.JPG)
+![](Capture.jfif)
 
 ♣️ Le framework Angular fournit le package npm @angular/router, que nous pouvons utiliser pour naviguer entre différents composants dans une application Angular 10. L'ajout d'un routage dans une application angulaire implique les étapes suivantes :
 
@@ -217,7 +239,7 @@ La séparation des préoccupations (besoins ou exigences) est la principale rais
    fichier principal index.html. Toutes les modifications ultérieures d'URL sont interceptées et gérées par le routeur sur le client. Ces types 
    d'applications sont appelées applications à page unique (SPA) car ils ne provoquent pas un rechargement complet d'une page :
 
-![](https://github.com/zaratechs/reda/blob/master/routeur2.JPG)
+![](routeur2.jfif)
 
 ***
 # point-2
@@ -333,7 +355,7 @@ export class AppRoutingModule { }
 ```
 Il s'agit d'un module angulaire utilisé pour configurer et activer le routeur dans notre application. Il importe RouterModule en utilisant la méthode forRoot, comme nous l'avons déjà appris dans la section précédente. Il réexporte également RouterModule afin que les composants d'autres modules qui importent AppRoutingModule aient accès aux services et directives du routeur. Par défaut, AppModule importe AppRoutingModule, donc tous les composants de notre application sont activés avec des capacités de routage :
 
-```java
+```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -370,7 +392,7 @@ Cependant, il est utile de les laisser inchangés à des fins de débogage car n
 La route des users activera UserListComponent, et la route du user activera UserDetailComponent:
 ```
 
-```java
+```typescript
 const routes: Routes = [
   { path: 'users', component: UsersListComponent },
   { path: 'user', component: UserDetailComponent }
@@ -402,7 +424,7 @@ Nous sommes maintenant prêts à prévisualiser notre application Angular. Exéc
 
 À ce stade, nous avons configuré l'itinéraire pour que le routage fonctionne comme il se doit. Cependant, cette approche ne s'adapte pas aussi bien. Au fur et à mesure que notre application se développe, de plus en plus de routes peuvent être ajoutées à AppRoutingModule. Ainsi, nous devrions créer un module de fonctionnalités distinct pour nos composants qui aura également un module de routage dédié.
 
-```java
+```bash
 ng generate module users --routing
 ```
 Le paramètre --routing demande à la CLI angulaire de créer un module de routage avec le module de fonctionnalités users :
@@ -411,7 +433,7 @@ Le paramètre --routing demande à la CLI angulaire de créer un module de routa
 
 La CLI angulaire nomme le fichier du module de routage après le nom du module de fonctionnalités réel, en ajoutant le suffixe -routing. Il s'agit d'une convention qui nous aide à identifier rapidement si un module de fonctionnalités a le routage activé et lequel est le module de routage du module de fonctionnalités respectif. Le nom de la classe TypeScript du module de routage suit également une convention similaire :
 
-```java
+```typescript
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [];
@@ -460,7 +482,7 @@ Nous avons déjà rencontré le concept de routes inconnues dans la section Pré
 ```
 2. Ouvrez le fichier app-routing.module.ts et ajoutez un nouvel objet de définition d'itinéraire dans la variable routes. Définissez la propriété path sur les doubles astérisques et la propriété du composant sur le nouveau composant que vous avez créé:
 
-```java
+```typescript
 const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -503,7 +525,7 @@ Nous disons au routeur de rediriger vers le chemin /users lorsque l'application 
 
 Il est à noter que nous avons ajouté le chemin de route vide après toutes les autres routes car, comme nous l'avons déjà appris, l'ordre des routes est important. Nous voulons des itinéraires plus spécifiques avant des itinéraires moins spécifiques. Dans le diagramme suivant, vous pouvez voir l'ordre dans lequel le routeur résout les chemins dans notre application:
 
-![](https://github.com/zaratechs/reda/blob/master/routeur3.JPG)
+![](routeur3.jfif)
 
 Nous avons déjà appris à naviguer dans notre application à l'aide de la directive routerLink. C'est la méthode préférée lors de l'utilisation d'éléments d'ancrage dans un modèle. Cependant, dans une application du monde réel, nous utilisons également des boutons pour la navigation. Dans la section suivante, nous allons apprendre à naviguer vers un chemin d'itinéraire impérativement à l'aide d'un élément bouton.
 
@@ -522,7 +544,7 @@ Lorsque nous naviguons vers une route générique, le modèle de la propriété 
 4. RouterModule exporte le service Router que nous pouvons utiliser dans nos composants pour effectuer une navigation impérative, dans le code. Injectez le service dans le constructeur de PageNotFoundComponent.
 5. Appelez la méthode de navigation du service Router dans la méthode goHome pour naviguer dans le chemin racine de l'application. Il accepte un tableau de paramètres de lien qui contient deux éléments - le chemin de route de destination et tous les paramètres de route, comme nous l'apprendrons plus tard dans le chapitre:
 
-```java
+```typescript
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
@@ -538,7 +560,7 @@ export class PageNotFoundComponent {
 }
 ```
 Il convient de noter que le tableau des paramètres de liaison peut également être utilisé dans la directive routerLink. Par exemple, nous aurions pu écrire l'élément d'ancrage de la route des héros comme suit:
-```java
+```html
 <a [routerLink]="['/users']">Users</a>
 ```
 >Remarque importante
@@ -553,7 +575,7 @@ Jusqu'à présent, nous nous sommes appuyés sur la barre d'adresse du navigateu
 RouterModule exporte la directive routerLinkActive, que nous pouvons utiliser pour changer le style d'une route active. Cela fonctionne de manière similaire à la liaison de classe que nous avons apprise au chapitre 3, Interaction des composants et inter-communication. Il accepte une liste de noms de classe ou une seule classe qui est ajoutée lorsque le lien est actif et est supprimée lorsqu'elle est inactive:
 
 1. Ouvrez le fichier app.component.css et définissez une classe active qui définit la couleur d'arrière-plan sur une valeur de votre choix:
-```java
+```css
 .active {
   background-color: lightgray;
 }
@@ -561,7 +583,7 @@ RouterModule exporte la directive routerLinkActive, que nous pouvons utiliser po
 
 2. Ajoutez la directive routerLinkActive aux deux liens dans app.component.html et définissez-la sur le nom de la classe active:
 
-```java
+```html
 <a routerLink="/users" routerLinkActive="active">Users</a>
 <a routerLink="/user" routerLinkActive="active">user</a>
 ```
@@ -592,14 +614,14 @@ Nous devons refactoriser le projet Angular CLI sur lequel nous travaillons afin 
 
 *** 
 1. Ouvrez le fichier users-routing.module.ts et ajoutez le suffixe /:id à la propriété path de la route user:
-```java
+```typescript
 { path: 'user/:id', component: UserDetailComponent }
 ```
 Le caractère deux-points indique que id est un paramètre d'itinéraire. Si une route a plus d'un paramètre, nous les séparons par /. Le nom du paramètre, id, est important lorsque nous voulons consommer sa valeur dans nos composants, comme nous l'apprendrons plus tard.
 
 2. Ouvrez le fichier user-list.component.html et convertissez chaque élément de paragraphe en un élément d'ancrage qui affiche la propriété name d'un user. Ajoutez la directive routerLink à chaque élément d'ancrage et utilisez la liaison de propriété pour définir sa valeur dans un tableau de paramètres de lien. Définissez le deuxième élément du tableau sur la propriété id de la variable de référence du modèle de users:
 
-```java
+```html
 <a [routerLink]="['/user', user.id]">{{user.name}}</a>
 ```
 
@@ -613,19 +635,19 @@ UserDetailComponent doit obtenir la valeur du paramètre id et faire une requêt
 1. Supprimez l'élément d'ancrage qui pointe vers l'itinéraire du héros du modèle d'AppComponent.
 2. Ajoutez une méthode getUser à UserService qui utilise le client HTTP pour obtenir des détails sur un héros particulier. La méthode doit renvoyer un Observable de type User:
 
-```java
+```typescript
 getUser(id: number): Observable<User> {
   return this.http.get<User>(this.usersUrl + id);
 }
 ```
 3. RouterModule exporte le service ActivatedRoute, que nous pouvons utiliser pour récupérer des informations sur la route actuellement active, y compris tous les paramètres. Injectez le service ActivatedRoute dans le constructeur de UserDetailComponent:
 
-```java
+```typescript
 constructor(private route: ActivatedRoute) { }
 ```
 4. Créez une propriété user dans le composant et utilisez l'interpolation pour afficher sa propriété name dans le modèle du composant:
 
-```java
+```html
 <p>{{user?.name}} works!</p>
 ```
 
@@ -637,7 +659,7 @@ Le service ActivatedRoute contient l'observable paramMap, que nous pouvons sousc
 
 Nous introduisons un autre opérateur RxJS, switchMap, pour passer d'une observable à l'autre. Nous profitons également de l'opérateur de carte pour définir le user renvoyé par l'API backend sur la propriété du composant de user local:
 
-```java
+```typescript
 ngOnInit(): void {
   this.getUserObs();
 }
@@ -671,7 +693,7 @@ Le routeur peut réutiliser l'instance d'un composant dès qu'elle reste rendue 
 
 Nous utilisons des routes enfants lorsque nous voulons définir un composant de conteneur pour un module de fonctionnalité qui agira en tant qu'orchestrateur de routage pour les composants de ce module. Il contient un élément de sortie de routeur dans lequel les routes enfants seront chargées. Supposons que nous voulions définir la disposition de notre application Angular comme suit:
 
-![](https://github.com/zaratechs/reda/blob/master/routeur4.JPG)
+![](routeur4.jfif)
 
 UserListComponent doit contenir le contenu existant avec un élément de sortie de routeur. L'élément supplémentaire router-outlet est utilisé pour rendre UserDetailComponent lorsque la route associée est activée.
 
@@ -682,7 +704,7 @@ UserDetailComponent n'est pas détruit lorsque nous naviguons d'un user à un au
 
 La configuration de l'itinéraire de notre application Angular, dans ce cas, serait la suivante:
 
-```java
+```typescript
 const routes: Routes = [
   {
     path: 'users',
@@ -693,21 +715,23 @@ const routes: Routes = [
   },
   { path: '', redirectTo: '/users', pathMatch: 'full' }
 ];
-```` 
+```
+
 Nous utilisons la propriété children d'un objet de configuration d'itinéraire pour définir des itinéraires enfants, qui contient une liste d'objets de configuration d'itinéraire. Notez également que nous avons supprimé le mot user de la propriété path de la route user. Nous voulions préciser qu'il s'agit d'un enfant de la route des users, et qu'il doit être accessible en utilisant le chemin /users/:id.
 
 Nous devons également changer la directive routerLink des éléments d'ancrage dans le fichier user-list.component.html afin que notre application fonctionne correctement:
 
-```java
+```html
 <a [routerLink]="['./', user.id]">{{user.name}}</a>
-```` 
+```
+
 Notez que nous avons remplacé /user par ./ . Quelle est cette étrange syntaxe? 
 Elle est appelée navigation relative et indique au routeur de naviguer vers une route spécifique par rapport à la route actuellement activée. 
 C'est le contraire de la syntaxe actuelle que nous avons utilisée jusqu'à présent, qui est appelée navigation absolue. 
 
 Par exemple, le chemin ./ indique de naviguer par rapport au niveau actuel, qui est /users, dans notre cas. Si la route vers laquelle nous voulions naviguer était un niveau au-dessus de la route des héros, nous aurions utilisé ../ comme chemin. Vous pouvez y voir une navigation entre les dossiers en utilisant la ligne de commande. La même syntaxe s'applique également à la navigation impérative:
 
-```java
+```typescript
 this.router.navigate(['./', user.id], { relativeTo: this.route });
 ```
 Dans ce cas, nous passons un objet NavigationExtras supplémentaire après le tableau de paramètres de lien qui définit la propriété relativeTo qui pointe vers la route actuellement activée.
@@ -724,12 +748,12 @@ Actuellement, lorsque nous sélectionnons un user dans la liste, UserListCompone
 
 Lorsque UserDetailComponent est détruit, la méthode ngOnInit et l'abonnement à l'observable paramMap le sont également. Ainsi, nous ne tirons aucun avantage en utilisant des observables à ce stade. Alternativement, nous pourrions utiliser la propriété snapshot du service ActivatedRoute pour obtenir des valeurs pour les paramètres d'itinéraire:
 
-```java
+```typescript
 private getUserSnap() {
   const id = this.route.snapshot.params['id'];
   this.userService.getUser(id).subscribe(user => this.user = user);
 }
-````
+```
 
 La propriété snapshot contient toujours la valeur actuelle d'un paramètre d'itinéraire, qui se trouve être également la valeur initiale. Il contient la propriété params, qui est un objet de type Params. Un objet Params contient des paires clé-valeur de paramètre d'itinéraire, auxquelles nous pouvons accéder comme nous le ferions pour un objet standard dans TypeScript.
 
