@@ -1,0 +1,96 @@
+swagger: "2.0"
+info:
+  title: Recettes
+  description: API pour voir et créer Recettes
+  version: 1.0.0
+host: 34.83.63.118
+basePath: /v1
+schemes:
+  - http
+paths:
+  /recipes.json:
+    get:
+      summary: Retourne une liste de recettes.
+      description: Dans un Json.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Ajoute une recette
+      parameters:
+        - in: body
+          name: recettes
+          description: Une recette a ajouter
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              feeds_this_many:
+                type: integer
+              preparation_time:
+                type: integer
+              ingredients:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ingredient:
+                      type: string
+                    measure:
+                      type: string
+              instructions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instruction:
+                      type: string
+                    photo:
+                      type: string
+              cover_photo:
+                type: string
+              keywords:
+                type: array
+                items:
+                  type: string
+      responses:
+        201:
+          description: Created
+  /recipes/{receipe_id}.json:
+    get:
+      summary: Retourne une liste de recettes.
+      parameters:
+        - in: path
+          name: receipe_id
+          required: true
+          type: integer
+          minimum: 0
+          description: Identificateur de la recette
+      description: Dans un Json.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+    delete:
+      summary: Effact une recette.
+      parameters:
+        - in: path
+          name: receipe_id
+          required: true
+          type: integer
+          minimum: 0
+          description: Identificateur de la recette
+      description: Dans un Json.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+    
+                    

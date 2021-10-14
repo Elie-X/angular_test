@@ -1,0 +1,38 @@
+@startuml
+participant browser as browser
+participant Application as app
+participant WebServeur as webs
+database StaticStorage as static
+participant AppServeur as server
+database Database as db
+
+browser -> webs: Charge application
+webs -> static : Load Static content
+static -> webs : html
+webs -> browser : <...html...>
+browser -> webs : GET /static/javascripts... Angulare app
+webs -> static : read js
+static -> webs : <script.....
+webs -> browser : <script..... @angular
+webs -> browser: Application Angular
+browser -> app : Demarre application
+app -> app : Create SPA
+app -> app : Generate Dom content
+app -> browser : Update Dom content
+alt 0..N : requetes
+    browser -> webs : GET css/images/js content
+    webs -> static : read css/images/js
+    static -> webs : .mycss {.....} or images
+    webs -> browser : .mycss {.....} or images
+end
+app -> server : Get /v1/receipes.json
+server -> db : Query for all receipes
+db -> server : [{all receipes...}]
+server -> app : application/json {receipes response}
+app -> app : Generate Dom content
+app -> browser : Update Dom content
+browser -> webs : Get images
+webs -> static : Load images
+static -> webs : Return images
+webs -> browser : Images
+@enduml

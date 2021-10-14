@@ -132,7 +132,7 @@ La directive structurelle NgFor permet de boucler sur un tableau et d'injecter l
 
 🌿  **Dans la vue**
 
-```
+```html
 <ul>
     <li *ngFor="let livre of listeLivres">{{ livre.titre}}</li>
 </ul>
@@ -140,7 +140,7 @@ La directive structurelle NgFor permet de boucler sur un tableau et d'injecter l
 
 🌿  **Dans le composant**
 
-```
+```typescript
 listeLivres = [
         {
             titre: 'Angular 10'
