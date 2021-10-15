@@ -54,6 +54,61 @@ La CLI Angular fait partie de l'écosystème Angular et est disponible au télé
 
 # Tour d'horizon d'Angular
 
+## Fichier initiaux
+
+Lorsqu'on crée un projet Angular il y a les éléments suivant qui sont crées
+
+```shell
+ng new empty
+? Would you like to add Angular routing? No
+? Which stylesheet format would you like to use? CSS
+CREATE empty/angular.json (3033 bytes)
+CREATE empty/package.json (1067 bytes)
+CREATE empty/README.md (1051 bytes)   
+CREATE empty/tsconfig.json (783 bytes)
+CREATE empty/.editorconfig (274 bytes)
+CREATE empty/.gitignore (604 bytes)
+CREATE empty/.browserslistrc (703 bytes)
+CREATE empty/karma.conf.js (1422 bytes)
+CREATE empty/tsconfig.app.json (287 bytes)
+CREATE empty/tsconfig.spec.json (333 bytes)
+CREATE empty/src/favicon.ico (948 bytes)
+CREATE empty/src/index.html (291 bytes)
+CREATE empty/src/main.ts (372 bytes)
+CREATE empty/src/polyfills.ts (2820 bytes)
+CREATE empty/src/styles.css (80 bytes)
+CREATE empty/src/test.ts (788 bytes)
+CREATE empty/src/assets/.gitkeep (0 bytes)
+CREATE empty/src/environments/environment.prod.ts (51 bytes)
+CREATE empty/src/environments/environment.ts (658 bytes)
+CREATE empty/src/app/app.module.ts (314 bytes)
+CREATE empty/src/app/app.component.html (24585 bytes)
+CREATE empty/src/app/app.component.spec.ts (953 bytes)
+CREATE empty/src/app/app.component.ts (209 bytes)
+CREATE empty/src/app/app.component.css (0 bytes)
+```
+
+## Modules
+
+Créer un module ajoute 4 fichier du nom du component que l'on ajoute
+
+```shell
+ng g c newcomponent
+CREATE src/app/newcomponent/newcomponent.component.html (27 bytes)
+CREATE src/app/newcomponent/newcomponent.component.spec.ts (668 bytes)
+CREATE src/app/newcomponent/newcomponent.component.ts (299 bytes)
+CREATE src/app/newcomponent/newcomponent.component.css (0 bytes)
+UPDATE src/app/app.module.ts (420 bytes)
+```
+
+## Model
+
+Par convention on crée un répertoire model pour contenir notre définition de model pour notre application
+
+## Service
+
+Un répertoire service pourra être crée pour inclure notre code d'interface pour nos composante et le model
+
 ## DIDIER TO ADD
 
 - [ ] Review des fichiers de base
@@ -71,6 +126,9 @@ La CLI Angular fait partie de l'écosystème Angular et est disponible au télé
 - [ ] Form Validation methods
 - [ ] Service
 - [ ] Testing
+- [ ] Event Emitter
+- [ ] Observable
+- [ ] RxJS
 - [ ] 
 
 
