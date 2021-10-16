@@ -175,6 +175,17 @@ Exemples 👍
 
 🌼 Pour remédier à cette limitation, Angular fournit des directives structurelles qui permettent de modifier la structure du **`DOM`**.
 
+> Les directives que nous allons utiliser existes dans le framework angular. Cependant il est possible de créer des directives avec le decorateur  `@Directive`
+
+```Typescript
+@Directive({
+    selector: '[myDirective]'
+})
+export class LeCodeDeMaDirective {
+    ...
+}
+```
+
 ### **Directive NgIf**
 
 🌼 L'une de ces directives les plus utilisées est le **`NgIf`**. Si l'expression associée à la directive est **`false `**alors l'élément et son contenu sont retirés du **`DOM`** (ou jamais ajoutés).
@@ -267,10 +278,102 @@ Chaques components peuvent inclure du CSS pour ajuster le style pour les éléme
 
 # Debut livre de recette
 
+Pour Didier: https://github.com/didiertremblay/recettes/compare/v0...v7
 
+Dans le répertoire angular un répertoir recettes contient le début de l'application livre de recette qui sera vu en classe pour intégrer les notions angular dans une application. 
+
+Pour éxécuté en local le code déposé vous devrez installer le dépendance pour npm en executant la commande `npm i`. Par la suite vous pourrez démarrer le serveur en utilisant `ng serve`
+
+### Exercise: Suivant la meme structure cree un application affichant un journal de voyage.
+
+> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui sera a intégrer et évaluer avec le travail de fin d'année.** 
 
 # Bindings
 
+"Bindings" permet de specifier un lien entre Angular entre les variables de notre class et le template. L'interpolation `{{}}` vu précédement
+
+Affichage des informations
+
+```shell
+                       Interpolation
+<typescript>             {{abc}}             
+eg AppComponent class   =========>     html/Template
+                      [property]="data"
+                      Property Binding
+```
+
+Recevoir des informations
+
+```shell
+                       Event Binding
+<typescript>          (event)="expression"        
+eg AppComponent class   <========     html/Template
+```
+
+Recevoir des informations
+
+```shell
+                       Event Binding
+<typescript>          (event)="expression"        
+eg AppComponent class   <========     html/Template
+```
+
+Exchange bi directionel
+
+Recevoir des informations
+
+```shell
+                          To Way Binding
+<typescript>            [(ngModel)]="data"        
+eg AppComponent class       <========        html/Template
+```
+
+### Execise : Binding
+
+On a fait précédament un affichage de nos variables dans notre module. 
+
+> * Comment rendre ce bouton disabled avec une variable.
+>   * Créez une variable bouton_actif qui est mis a false
+>   * Dans notre constructeur appelez la function setTimeout pour changer l'état de la variable a true (!!! important utiliser un arrow function sinon votre this pour votre constructeur ne fonctionnera pas!!!)
+> * Dans le app.component.html de cette exercise ajoutons deux boutons
+>   * Mettre le premier bouton disabled
+>   * Mettre le deuxieme bouton disabled={{bouton_actif}}
+>       * Ce binding permet de lier un propety avec un expression typescript.
+>   * Le property pourrait aussi être utilisé pour afficher le text d'un élément avec `<p [innerText]="bouton_actif"></p>`
+
+### Execise : Event Binding
+
+Ici nous allons capture une action sur notre bouton pour engendrer un changement dans notre application.
+
+> * Maintenant on va faire quelquechose avec notre bouton lorsqu'il est actif
+> * Dans notre deuxieme bouton ajouter `(click)="onButtonClick()"
+> * Dans votre class application crée un méthod onButtonClick qui change une variable dans votre code
+
+Tous les types d'événement javascript peuvent être utilisé et dans les scenarios ou les événements possède des données ces données sont disponible par la variable `$event`
+
+> * Ajoutez un `input` pour du texte
+> * Dans cet `input` ajoutez le event binding pour input `(input)="inputOfText($event)`
+> * Créez une fonction qui affiche le contenu du parametre recu (Utilisé any comme type)
+>   * Le type pour cette évenement est un Event.. L'utiliser cependant requiert d'utiliser un casting 
+> * 
+
+### Exercise: Two way binding
+
+Souvent l'information capturé doit être réutilisé pour mettre à jour un élément dans le template. Dans ce scenario nous relions la template avec une variable ainsi que la variable avec la template.
+
+> * Créez un nouvel `input` pour ajouter du texte
+> * Dans cet `input` ajoutez un two way binding en utilisant `[(ngModel)]="variable"` ou variable est la variable que vous avez utlisé dans l'exercise précédent.
+>   * ngModel ne sera pas reconnu et doit être ajouter dans appModule
+
+![](ngFormAppModule.png)
+
+> * Créez un nouvel `input` pour ajouter du texte
+
+Est-ce que tout fonctionne???? Qu'elle est la difference entre nos deux inputs?
+
+### Exercise : [Binding](angulare/exercises/binding)
+
+# Passage de parametre entre components
 
 
 
