@@ -109,29 +109,6 @@ Par convention on crée un répertoire model pour contenir notre définition de 
 
 Un répertoire service pourra être crée pour inclure notre code d'interface pour nos composante et le model
 
-## DIDIER TO ADD
-
-- [ ] Review des fichiers de base
-- [ ] Components
-- [ ] Add Bootstrap 
-- [ ] Model
-- [ ] Service
-- [ ] Directive
-- [ ] Interpolation
-- [ ] Data Binding
-- [ ] CSS
-- [ ] Execises Components
-- [ ] Execises Data Binding
-- [ ] Exercise Graph
-- [ ] Form Validation methods
-- [ ] Service
-- [ ] Testing
-- [ ] Event Emitter
-- [ ] Observable
-- [ ] RxJS
-- [ ] 
-
-
 # MVC
 
 🌿 Component, Templates, Interpolation, et Directives ?
@@ -150,6 +127,28 @@ Un répertoire service pourra être crée pour inclure notre code d'interface po
 
 🌼 Nous avons vu qu'un composant angulaire est une vue définie avec un modèle, son code associé défini avec une classe et des informations supplémentaires définies avec des métadonnées et définies à l'aide d'un décorateur de composant. 
 
+# Application Angular
+
+Regardons les bases d'une application angular
+
+## empty
+
+Allons dans le folder `empty` et roulons ng serve. Ouvrir un browser sur [http://localhost:4200/]
+
+La page est vide yeah!
+
+* Ajoutons du html dans app.components.html
+* Le Html apparait
+  * mais! pourquoi? est-ce notre index.html?
+  * component vs selector vs attribute vs class vs id
+  * View source (Regardons le flow)
+    * index + script
+    * load main.ts
+    * load app modules
+    * load app components
+    * load ... (DOM rewrite)
+
+
 🌿 Quelques définitions
 
 🌿  **L'interpolation** (contrôle des attributs) : La syntaxe d'interpolation permet d'accéder directement aux propriétés du composant associé (un peu comme si toutes les expressions étaient préfixées par un this . 
@@ -161,6 +160,12 @@ Exemples 👍
 * **`{{ 'Titre: ' + getTitre() }}`**
 * **`<h1 innerText={{pageTitre}}></h1>`**
 
+### Execise : Premier pas
+> * Créer une application Angular
+> * Ajoutez le module bootstrap
+> * Dans la class AppComponent (app.component.ts)
+> * Créez une variable avec une chaine de text
+> * Mettre du HTML dans le app.component.html pour afficher le contenu de votre variable
 
 🌿 **Les directives**
 
@@ -183,6 +188,9 @@ Exemples 👍
 **[NgIf Angular documentation](https://angular.io/api/common/NgIf)**
 
 **[switch Angular documentation](https://angular.io/api/common/NgSwitch)**
+
+### Execise : 
+> * Ajouter un booleen et affichez du contenue si le booleen est vrai ou faux
 
 🌼 **Directive NgFor**
 
@@ -209,11 +217,93 @@ listeLivres = [
     ];
 ```
 
-🌿  Objectif de la rencontre, nous allons 👍 
-1. Construire un `Template`
-1. Utiliser un `Composant` comme une `Directive`
-1. Établir la relation [Binding] en utilisant la technique de `l'Interpolation`
-1. Ajouter la logique grâce aux `Directives`
+### Execise : 
+> * Créez un vecteur de avec la liste de livres affiche plus haut
+> * En utilisant la directive NGfor affichez votre liste de livre
+
+# Components
+
+Une application est construite en "component" chaque components peuvent être groupé pour contruire une application.
+
+Example l'application pour le TP final aura plusieurs "components" qui servirons à la création de l'application.
+
+### Exercise : Component
+
+On va ajouter deux composants à l'intérieur notre exercise initial. 
+
+> * Creez un component en utilisant le CLI:
+>   * `ng generate component alpha`
+> * Modifier le html de votre component pour y mettre du html
+> * Verifier dans votre application si vous voyez le text de votre nouveau component
+> * Ajouter une référence a votre component dans le app.component.html
+> * Creez un autre component beta **mais sans utiliser la commande ng** référez-vous au premier component pour voir ce que vous devez ajouter.
+> * Dans le component alpha, affichez le contenue du component beta 2 ou trois fois
+
+## @component
+
+* Selector
+  * Nom de notre component
+* templateUrl
+  * Location de notre template HTML
+  * On peut le remplacer par template avec du HTML
+    * '' vs ``
+* styleUrls
+  * Vecteur des fichiers CSS pour notre component
+
+# Styling using CSS
+
+Chaques components peuvent inclure du CSS pour ajuster le style pour les éléments du component.
+
+### Execise
+
+> * En ajoutant à l'intérieur du fichier CSS pour le composant Alpha changer le stype pour p ou h1 pour mettre un background color bleu
+> * Observer la couleur dans votre application
+>   * Est-ce que la couleur que vous avez mis dans le component alpha impact le component beta qui est affiché dans Alpha?
+> * A l'interieur de Beta en remplacant le @component pour utiliser style au lieu de style URL et changer le background color red.
+> * Observez le résultat
+> * Question pourquoi il n'y a pas de conflit pour les styles?
+
+### Exercise: [resultats](exercises/resultats)
+
+# Debut livre de recette
+
+
+
+# Bindings
+
+
+
+
+
+## DIDIER TO ADD Cover
+
+- [ ] Review des fichiers de base
+- [ ] Components
+- [ ] Add Bootstrap 
+- [ ] Model
+- [ ] Service
+- [ ] Directive
+- [ ] Interpolation
+- [ ] Data Binding
+- [ ] CSS
+- [ ] Execises Components
+- [ ] Execises Data Binding
+- [ ] Exercise Graph
+- [ ] Form Validation methods
+- [ ] Service
+- [ ] Testing
+- [ ] Event Emitter
+- [ ] Observable
+- [ ] RxJS - Chat app?
+  - [ ] Mouse move?
+- [ ] Filter | Pipe
+
+
+
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
 
 🌿 Le but des services d'Angular 
 
@@ -340,12 +430,12 @@ Une application Angular doit définir la balise HTML de base dans le fichier ind
 ### Importation du module routeur
 La bibliothèque de routeurs angulaires contient RouterModule, un module angulaire que nous devons importer dans notre application pour commencer à utiliser les fonctionnalités de routage :
 
-```java
+```typescript
 import { RouterModule } from '@angular/router';
 ```
 Nous importons RouterModule dans le module d'application principal, AppModule, en utilisant le modèle forRoot
 
-```java
+```typescript
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)
@@ -363,7 +453,7 @@ Il accepte un seul paramètre, qui est la configuration d'itinéraire de l'appli
 ### Configurer le routeur
 La variable routes que nous transmettons dans la méthode forRoot est une liste d'objets Routes qui spécifient les routes existantes dans l'application et les composants qui doivent répondre à une route spécifique. Cela peut ressembler à ceci :
 
-```java
+```typescript
 const routes: Routes = [
   { path: 'listes', component: ListesComponent },
   { path: '**', component: PageNotFoundComponent }
@@ -382,7 +472,7 @@ L'une des directives que la bibliothèque de routeurs exporte à l'aide de la m�
 
 En règle générale, l'AppComponent d'une application Angular 10 est utilisé uniquement pour fournir la disposition principale de l'application et orchestrer tous les autres composants. Nous devons l'écrire une fois et l'oublier, et ne pas le modifier lorsque nous voulons ajouter une nouvelle fonctionnalité à notre application. Ainsi, un exemple typique d'AppComponent est le suivant :
 
-```java
+```html
 <app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
@@ -395,13 +485,13 @@ Nous avons déjà couvert les bases et fourni une configuration minimale du rout
 # point-5
 ### Création d'une application angulaire avec routage
 
-```java
+```shell
 Commande pour créer une application avec le module routing
 ng new application --routing --skipTests
 ```
 Cela génère à peu près les mêmes fichiers que d'habitude mais à une exception près, le fichier app-routing.module.ts :
 
-```java
+```typescript
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [];
@@ -534,7 +624,7 @@ Actuellement, la configuration de l'itinéraire de notre application est assez s
 Nous avons déjà rencontré le concept de routes inconnues dans la section Présentation du routeur angulaire. Nous avons configuré une route générique pour afficher un PageNotFoundComponent lorsque notre application essaie de naviguer vers un chemin de route qui n'existe pas. Il est maintenant temps d'ajouter ce composant :
 
 1. Utilisez la CLI angulaire pour créer un nouveau composant nommé page-not-found. Notre application affichera le composant nouvellement généré lorsque nous naviguerons vers un chemin d'itinéraire inconnu. Assurez-vous de lui donner un contenu significatif dans le modèle:
-```java
+```html
 <h3>Ooops!</h3>
 <p>The requested page was not found</p>
 ```
@@ -576,7 +666,7 @@ Nous définissons la propriété path d'une route sur une chaîne vide pour indi
 Cependant, nous aurions pu faire mieux que de définir un nouveau chemin de route pour UserListComponent. 
 
 Introduisons un autre terme de routage, rediriger. Remplacez l'objet de définition d'itinéraire par défaut par ce qui suit:
-```java
+```javascript
 { path: '', redirectTo: '/users', pathMatch: 'full' }
 ```
 Nous disons au routeur de rediriger vers le chemin /users lorsque l'application navigue vers la route par défaut. La propriété pathMatch indique au routeur comment faire correspondre l'URL à la propriété du chemin d'itinéraire. Dans ce cas, le routeur redirige vers le chemin /users uniquement lorsque l'URL correspond à la route par défaut.
@@ -595,7 +685,7 @@ Lorsque nous naviguons vers une route générique, le modèle de la propriété 
 1. Ouvrez le fichier page-not-found.component.html et ajoutez un élément HTML de bouton.
 2. Ajoutez une liaison d'événement à l'événement DOM de clic natif de l'élément bouton. Définissez l'instruction de modèle de la liaison sur une méthode de composant goHome, qui n'existe pas encore. 
 
-```java
+```html
 <button (click)="goHome()">Home</button>
 ```
 3. Ouvrez le fichier page-not-found.component.ts et créez la méthode goHome.
