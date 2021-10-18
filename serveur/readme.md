@@ -32,6 +32,32 @@
 
 Une API REST se doit d’être sans état `stateless `. La communication entre le client et le serveur ne doit pas dépendre d’un quelconque contexte provenant du serveur. Ainsi, chaque requête doit contenir l’ensemble des informations nécessaires à son traitement. Cela permet au de traiter indifféremment les requêtes de plusieurs clients via de multiples instances de serveurs.
 
+# Method dans REST
+
+## GET
+
+Récupère une ressource en lecture seul. Un appel a GET ne devrait jamais modifier un éléments
+
+## POST
+
+Permet de créer une nouvelle resource. En temps normal cette action ne devrait pas être utilisé pour modifier mais uniquement pour créer une resource.
+
+## PUT
+
+Permet de mettre à jour une resource
+
+## DELETE
+
+Enleve/détruit la resource spécifiée
+
+## HEAD
+
+Ne fait aucun operation permet de vérifier si la resource existe
+
+## OPTION
+
+Permet de récupérer les operations qui sont permit pour une resource donné. Le serveur ne doit faire aucun changement et devrait retourner la liste de method CRUD qui sont permit.
+
 # Status Code
 
 Pour chaque réponse renvoyée par l’API, un code doit être envoyé, ce code correspond à l’état de la requête et dépend de la réussite ou non de celle-ci. 

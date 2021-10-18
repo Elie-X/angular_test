@@ -1281,17 +1281,6 @@ class SSHUser {
    > Le seul cas est lors de présence de relation ManyToMany (qui implique la création d'une classe associative).
 ```
 
-
-```Javascript
-
-```
-
-```Javascript
-
-```
-
-
-
 ### Abstract Class
 
 ```Javascript
@@ -1363,11 +1352,8 @@ function clientCode() {
 clientCode();
 ```
 
-### Execise
-> Dans le répertoire interfaces que vous avez créez dans un exercise précédent. Créer le UML pour les deux interfaces que vous avez réalisé
-
-
-# Autre materiel a mettre en ordre
+# Materiel complémentaire
+Notes additionels sur typescript et revision d'éléments
 
 * 🍄 La différence entre var, let et const
 * 🍄 Les types primitis en Typescript

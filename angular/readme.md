@@ -380,6 +380,7 @@ Est-ce que tout fonctionne???? Qu'elle est la difference entre nos deux inputs?
 
 ## DIDIER TO ADD Cover
 
+- [ ] ngStyle
 - [ ] Review des fichiers de base
 - [ ] Components
 - [ ] Add Bootstrap 
