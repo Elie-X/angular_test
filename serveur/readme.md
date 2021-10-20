@@ -163,13 +163,24 @@ proxy_pass http://127.0.0.1:8080;
 
 ## Utilisation de l'API
 
+* API Overview
+  * Swagger [Documentation](https://swagger.io/docs/specification/2-0/basic-structure/)
 * Curl
-* Javascript / JQuery
-
+  * Command Line pour faire des requetes http
+* Postman [Documentation](https://learning.postman.com/docs/getting-started/introduction/)
+  * System pour valider des interfaces. Pas requis pour le niveau de difficulté du cours mais peut-être un outils que vous voudrez inclure dans vos connaissances si vous travaillez dans le web
 
 ## Serverless Server
 
-* Concept
+Un serveur dans serveur!? Semble étrange mais devient possible avec l'info nuagique. Au lieu de d'installer une application qui fonctionne en permance on écrit du code qui sera executé à la demande suivant un déclancheur. 
+
+Le fournisseur maintient les infrastructures requise pour supporter les fonctions a exécuté
+
+* Concepts
 * Fonctionement
 * Ephemeral
+* Google Cloud -> Cloud Function [Documentation](https://cloud.google.com/functions)
+* AWS -> Lambdas [Documentation](https://aws.amazon.com/lambda/)
+* Azure -> Functions [Documentation](https://azure.microsoft.com/en-us/services/functions/#overview)
+
 

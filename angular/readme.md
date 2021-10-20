@@ -45,12 +45,10 @@ Angular **CLI**utilise **Node.js** pour accomplir des tâches spécifiques, tell
 ***
 #### 🌼 Installation Angular CLI (Command Line Interface)
 La CLI Angular fait partie de l'écosystème Angular et est disponible au téléchargement à partir du registre de packages npm. Puisqu'il est utilisé pour créer des applications et des projets angulaires, nous devons l'installer globalement dans notre système. Ouvrez un terminal et exécutez la commande suivante:
-> * npm install -g @angular/cli@10.0.0
+> * npm install -g @angular/cli
 
 #### Les commandes CLI
 🔸 [Lien vers un fichier PDF contenant des commandes](angular_cli_commands.pdf)
-
->### [Lien vers l'API Faker](http://marak.github.io/faker.js/#toc2__anchor)
 
 # Tour d'horizon d'Angular
 
@@ -163,11 +161,15 @@ Exemples 👍
 ### Execise : Premier pas
 > * Créer une application Angular
 > * Ajoutez le module bootstrap
+>   * Utiliser npm pour ajouter bootstrap dans le répertoire node_modules `npm install bootstrap`
+>   * Dans le fichier angular.json dans la section css ajouter `node_modules/bootstrap/dist/css/bootstrap.css`
+> ![](bootstrapcss.png)
+> * Dans votre app.component.html vous pouvez utiliser bootstrap pour contoller la structure de votre page et de ses éléments.
 > * Dans la class AppComponent (app.component.ts)
 > * Créez une variable avec une chaine de text
 > * Mettre du HTML dans le app.component.html pour afficher le contenu de votre variable
 
-🌿 **Les directives**
+# Les directives
 
 ![](Im-03.jpg)
 
@@ -374,6 +376,7 @@ Est-ce que tout fonctionne???? Qu'elle est la difference entre nos deux inputs?
 ### Exercise : [Binding](angulare/exercises/binding)
 
 # Passage de parametre entre components
+
 
 
 
@@ -1371,3 +1374,7 @@ Pour accomplir ce travail, vous devez réaliser les objectifs suivants :
 * :mushroom: [Objectif 7 : la section F.U.N : exemple : intégration du lecteur YOUTUBE](#objectif7)
 * :mushroom: [Objectif 8 : la qualité du code (10 points)](#objectifTransversal1)
 * :mushroom: [Objectif 9 : la qualité de l'application (10 points)](#objectifTransversal2)
+
+
+>### [Lien vers l'API Faker](http://marak.github.io/faker.js/#toc2__anchor)
+
