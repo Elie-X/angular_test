@@ -169,7 +169,11 @@ Exemples 👍
 > * Créez une variable avec une chaine de text
 > * Mettre du HTML dans le app.component.html pour afficher le contenu de votre variable
 
+DIDIER: Group 1 est ici
+
 # Les directives
+
+[Documentation](https://angular.io/guide/built-in-directives)
 
 ![](Im-03.jpg)
 
@@ -236,9 +240,13 @@ listeLivres = [
 
 # Components
 
+[Documentation](https://angular.io/guide/component-overview)
+
 Une application est construite en "component" chaque components peuvent être groupé pour contruire une application.
 
 Example l'application pour le TP final aura plusieurs "components" qui servirons à la création de l'application.
+
+DIDIER: Group 2 est ici
 
 ### Exercise : Component
 
@@ -280,15 +288,20 @@ Chaques components peuvent inclure du CSS pour ajuster le style pour les éléme
 
 # Debut livre de recette
 
-Pour Didier: https://github.com/didiertremblay/recettes/compare/v0...v7
+Pour Didier: https://github.com/didiertremblay/recettes/compare/v0...v8
 
-Dans le répertoire angular un répertoir recettes contient le début de l'application livre de recette qui sera vu en classe pour intégrer les notions angular dans une application. 
+Dans le répertoire angular un répertoire recettes contient le début de l'application livre de recette qui sera vu en classe pour intégrer les notions angular dans une application. 
 
 Pour éxécuté en local le code déposé vous devrez installer le dépendance pour npm en executant la commande `npm i`. Par la suite vous pourrez démarrer le serveur en utilisant `ng serve`
 
-### Exercise: Suivant la meme structure cree un application affichant un journal de voyage.
+### Exercise: Suivant la meme structure créez un application affichant un journal de voyage.
 
-> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui sera a intégrer et évaluer avec le travail de fin d'année.** 
+> * Creez le git `pratique-pour-tp` un nouveau projet Angular
+> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
+>   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
+> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas a vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
+
+> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évaluer avec le travail de fin d'année.** 
 
 # Bindings
 
@@ -340,12 +353,12 @@ On a fait précédament un affichage de nos variables dans notre module.
 > * Dans le app.component.html de cette exercise ajoutons deux boutons
 >   * Mettre le premier bouton disabled
 >   * Mettre le deuxieme bouton disabled={{bouton_actif}}
->       * Ce binding permet de lier un propety avec un expression typescript.
+>       * Ce binding permet de lier un property avec une expression typescript.
 >   * Le property pourrait aussi être utilisé pour afficher le text d'un élément avec `<p [innerText]="bouton_actif"></p>`
 
 ### Execise : Event Binding
 
-Ici nous allons capture une action sur notre bouton pour engendrer un changement dans notre application.
+Ici nous allons capturer une action sur notre bouton pour engendrer un changement dans notre application.
 
 > * Maintenant on va faire quelquechose avec notre bouton lorsqu'il est actif
 > * Dans notre deuxieme bouton ajouter `(click)="onButtonClick()"
@@ -356,10 +369,13 @@ Tous les types d'événement javascript peuvent être utilisé et dans les scena
 > * Ajoutez un `input` pour du texte
 > * Dans cet `input` ajoutez le event binding pour input `(input)="inputOfText($event)`
 > * Créez une fonction qui affiche le contenu du parametre recu (Utilisé any comme type)
->   * Le type pour cette évenement est un Event.. L'utiliser cependant requiert d'utiliser un casting 
-> * 
+>   * Si on veut éviter Le type any pour cette évenement est un Event.. L'utiliser cependant requiert d'utiliser un casting `HTMLInputElement` 
+> * Afficher le contenu de l'événement dans le console log.
+> * Prendre la valeur de l'input et la mettre dans une variable que vous avez crée précédament pour y voir le texte que vous entrez.
 
 ### Exercise: Two way binding
+
+[Documentation](https://angular.io/guide/two-way-binding#how-two-way-binding-works)
 
 Souvent l'information capturé doit être réutilisé pour mettre à jour un élément dans le template. Dans ce scenario nous relions la template avec une variable ainsi que la variable avec la template.
 
@@ -375,8 +391,27 @@ Est-ce que tout fonctionne???? Qu'elle est la difference entre nos deux inputs?
 
 ### Exercise : [Binding](angulare/exercises/binding)
 
+# DIDIER: TO WORK ON THE NEXT STEPS
+
 # Passage de parametre entre components
 
+Jusqu'à présent nous avons vu que nous pouvons créer plusieurs components et avoir un component utilisé un autre component. Cependant notre utilisation de l'autre component se limite à afficher simplement son contenu. Comment utiliser le component pour lui demander d'afficher de l'information fournis par le parent?
+
+Pour faire ce passage d'information angular fournit le décorateur `@input` [Documentation](https://angular.io/guide/inputs-outputs)
+
+DIDIER: https://github.com/didiertremblay/recettes/compare/v8...v9
+
+Pour démontrer ce processus nous allons modifier l'application de recettes pour créer un nouveau component qui aura comme responsabilité d'afficher un sommaire pour une recette.
+
+> * Créons un component sommaire-recette
+> * Dans sommaire-recette nous allons ajouter un attribut recette pour lequel nous allons décoré de `@Input()` pour lui permettre de recevoir l'information de sont parent
+> * On va déplacé le contenu qui correspond au sommaire dans le html du nouveau component
+> * Ainsi que le CSS requis pour l'imgae
+> * Dans le parent au lieu du sommaire on va utiliser le selecteur de notre nouveau component en passant notre recette qui est a afficher `[recette]="recette` (Hum?! meme nom :()
+
+Donc
+
+### Exercise, faire la même transformation avec votre Journal de voyage.
 
 
 
@@ -384,26 +419,20 @@ Est-ce que tout fonctionne???? Qu'elle est la difference entre nos deux inputs?
 ## DIDIER TO ADD Cover
 
 - [ ] ngStyle
-- [ ] Review des fichiers de base
-- [ ] Components
-- [ ] Add Bootstrap 
+- [ ] ngClass
+- [ ] Distribuer l'avancement du livre de recette
+- [ ] Barre de navigation
 - [ ] Model
-- [ ] Service
 - [ ] Directive
-- [ ] Interpolation
-- [ ] Data Binding
 - [ ] CSS
-- [ ] Execises Components
-- [ ] Execises Data Binding
-- [ ] Exercise Graph
 - [ ] Form Validation methods
 - [ ] Service
-- [ ] Testing
 - [ ] Event Emitter
 - [ ] Observable
 - [ ] RxJS - Chat app?
   - [ ] Mouse move?
 - [ ] Filter | Pipe
+- [ ] Testing
 
 
 
