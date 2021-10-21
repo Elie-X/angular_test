@@ -207,7 +207,7 @@ export class LeCodeDeMaDirective {
 **[switch Angular documentation](https://angular.io/api/common/NgSwitch)**
 
 ### Exercise : 
-> * Ajouter un booleen et affichez du contenue si le booleen est vrai ou faux
+> * Ajouter un booleen dans le appcomponent.ts de l'exercise précédant et affichez du contenue si le booleen est vrai ou faux
 
 🌼 **Directive NgFor**
 
@@ -235,6 +235,9 @@ listeLivres = [
 ```
 
 ### Exercise : 
+
+Toujours en utilisant le projet que vous avez crée ajouter les éléments suivants:
+
 > * Créez un vecteur de avec la liste de livres affiche plus haut
 > * En utilisant la directive NGfor affichez votre liste de livre
 
@@ -242,7 +245,7 @@ listeLivres = [
 
 [Documentation](https://angular.io/guide/component-overview)
 
-Une application est construite en "component" chaque components peuvent être groupé pour contruire une application.
+Une application est construite en "component" chaque components peuvent être groupés pour contruire une application.
 
 Example l'application pour le TP final aura plusieurs "components" qui servirons à la création de l'application.
 
@@ -258,6 +261,8 @@ On va ajouter deux composants à l'intérieur notre exercise initial.
 > * Verifier dans votre application si vous voyez le text de votre nouveau component
 > * Ajouter une référence a votre component dans le app.component.html
 > * Creez un autre component beta **mais sans utiliser la commande ng** référez-vous au premier component pour voir ce que vous devez ajouter.
+>   * Ici le but est de regarder les fichiers qui furent crées pour le project Alpha et crée des fichiers similaire pour contruire un component beta
+>   * Il va y avoir un fichier qui a reçu une autre modification pour inclure le nouveau module, vous devrez le trouver et le modifier pour ajouter votre module beta.
 > * Dans le component alpha, affichez le contenue du component beta 2 ou trois fois
 
 ## @component
