@@ -158,7 +158,7 @@ Exemples 👍
 * **`{{ 'Titre: ' + getTitre() }}`**
 * **`<h1 innerText={{pageTitre}}></h1>`**
 
-### Execise : Premier pas
+### Exercise : Premier pas
 > * Créer une application Angular
 > * Ajoutez le module bootstrap
 >   * Utiliser npm pour ajouter bootstrap dans le répertoire node_modules `npm install bootstrap`
@@ -206,7 +206,7 @@ export class LeCodeDeMaDirective {
 
 **[switch Angular documentation](https://angular.io/api/common/NgSwitch)**
 
-### Execise : 
+### Exercise : 
 > * Ajouter un booleen et affichez du contenue si le booleen est vrai ou faux
 
 🌼 **Directive NgFor**
@@ -234,7 +234,7 @@ listeLivres = [
     ];
 ```
 
-### Execise : 
+### Exercise : 
 > * Créez un vecteur de avec la liste de livres affiche plus haut
 > * En utilisant la directive NGfor affichez votre liste de livre
 
@@ -275,7 +275,7 @@ On va ajouter deux composants à l'intérieur notre exercise initial.
 
 Chaques components peuvent inclure du CSS pour ajuster le style pour les éléments du component.
 
-### Execise
+### Exercise
 
 > * En ajoutant à l'intérieur du fichier CSS pour le composant Alpha changer le stype pour p ou h1 pour mettre un background color bleu
 > * Observer la couleur dans votre application
@@ -343,7 +343,7 @@ Recevoir des informations
 eg AppComponent class       <========        html/Template
 ```
 
-### Execise : Binding
+### Exercise : Binding
 
 On a fait précédament un affichage de nos variables dans notre module. 
 
@@ -356,7 +356,7 @@ On a fait précédament un affichage de nos variables dans notre module.
 >       * Ce binding permet de lier un property avec une expression typescript.
 >   * Le property pourrait aussi être utilisé pour afficher le text d'un élément avec `<p [innerText]="bouton_actif"></p>`
 
-### Execise : Event Binding
+### Exercise : Event Binding
 
 Ici nous allons capturer une action sur notre bouton pour engendrer un changement dans notre application.
 
