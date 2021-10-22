@@ -169,7 +169,6 @@ Exemples 👍
 > * Créez une variable avec une chaine de text
 > * Mettre du HTML dans le app.component.html pour afficher le contenu de votre variable
 
-DIDIER: Group 1 est ici
 
 # Les directives
 
@@ -251,8 +250,6 @@ Une application est construite en "component" chaque components peuvent être gr
 
 Example l'application pour le TP final aura plusieurs "components" qui servirons à la création de l'application.
 
-DIDIER: Group 2 est ici
-
 ### Exercise : Component
 
 On va ajouter deux composants à l'intérieur notre exercise initial. 
@@ -292,6 +289,9 @@ Chaques components peuvent inclure du CSS pour ajuster le style pour les éléme
 > * Question pourquoi il n'y a pas de conflit pour les styles?
 
 ### Exercise: [resultats](exercises/resultats)
+
+DIDIER: Groupe2 est ici
+DIDIER: Groupe1 est ici
 
 # Debut livre de recette
 
