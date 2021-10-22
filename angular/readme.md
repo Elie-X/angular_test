@@ -291,6 +291,7 @@ Chaques components peuvent inclure du CSS pour ajuster le style pour les éléme
 ### Exercise: [resultats](exercises/resultats)
 
 DIDIER: Groupe2 est ici
+
 DIDIER: Groupe1 est ici
 
 # Debut livre de recette
