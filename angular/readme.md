@@ -213,11 +213,13 @@ export class LeCodeDeMaDirective {
 
 La directive structurelle NgFor permet de boucler sur un tableau et d'injecter les éléments dans le DOM.
 
+[Documentation](https://angular.io/api/common/NgForOf)
+
 🌿  **Dans la vue**
 
 ```html
 <ul>
-    <li *ngFor="let livre of listeLivres">{{ livre.titre}}</li>
+    <li *ngFor="let livre of listeLivres; index as i; first as isFirst">{{ livre.titre}}</li>
 </ul>
 ```
 
