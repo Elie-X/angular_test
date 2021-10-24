@@ -2,7 +2,7 @@
 
 ## Timeline
 
-![Timeline](timeline-angular-js.jpg)
+![Timeline](images/timeline-angular-js.jpg)
 ref(https://www.bootstrapdash.com/angular-release-date/)
 
 Une version a tous les 6 moins
@@ -48,7 +48,7 @@ La CLI Angular fait partie de l'écosystème Angular et est disponible au télé
 > * npm install -g @angular/cli
 
 #### Les commandes CLI
-🔸 [Lien vers un fichier PDF contenant des commandes](angular_cli_commands.pdf)
+🔸 [Lien vers un fichier PDF contenant des commandes](images/angular_cli_commands.pdf)
 
 # Tour d'horizon d'Angular
 
@@ -111,11 +111,11 @@ Un répertoire service pourra être crée pour inclure notre code d'interface po
 
 🌿 Component, Templates, Interpolation, et Directives ?
 
-![](Im-01.jpg)
+![](images/Im-01.jpg)
 
 *** 
 🌿 Exemple d'architecture d'une application Angular 10.
-![](Im-02.jpg)
+![](images/Im-02.jpg)
 
 🌼  Nous allons créer l'interface utilisateur à l'aide de modèles, de directives et de liaisons de données. 
 
@@ -163,7 +163,7 @@ Exemples 👍
 > * Ajoutez le module bootstrap
 >   * Utiliser npm pour ajouter bootstrap dans le répertoire node_modules `npm install bootstrap`
 >   * Dans le fichier angular.json dans la section css ajouter `node_modules/bootstrap/dist/css/bootstrap.css`
-> ![](bootstrapcss.png)
+> ![](images/bootstrapcss.png)
 > * Dans votre app.component.html vous pouvez utiliser bootstrap pour contoller la structure de votre page et de ses éléments.
 > * Dans la class AppComponent (app.component.ts)
 > * Créez une variable avec une chaine de text
@@ -174,7 +174,7 @@ Exemples 👍
 
 [Documentation](https://angular.io/guide/built-in-directives)
 
-![](Im-03.jpg)
+![](images/Im-03.jpg)
 
 🌼 Alors que le **`Template `**Interpolation et la propriété **`Binding `**permettent de modifier l'affichage et le contenu, ils ne permettent pas de modifier la structure du DOM en ajoutant ou en retirant des éléments par exemple.
 
@@ -302,15 +302,6 @@ Dans le répertoire angular un répertoire recettes contient le début de l'appl
 
 Pour éxécuté en local le code déposé vous devrez installer le dépendance pour npm en executant la commande `npm i`. Par la suite vous pourrez démarrer le serveur en utilisant `ng serve`
 
-### Exercise: Suivant la meme structure créez un application affichant un journal de voyage.
-
-> * Creez le git `pratique-pour-tp` un nouveau projet Angular
-> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
->   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
-> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas a vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
-
-> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évaluer avec le travail de fin d'année.** 
-
 # Bindings
 
 "Bindings" permet de specifier un lien entre Angular entre les variables de notre class et le template. L'interpolation `{{}}` vu précédement
@@ -391,11 +382,50 @@ Souvent l'information capturé doit être réutilisé pour mettre à jour un él
 > * Dans cet `input` ajoutez un two way binding en utilisant `[(ngModel)]="variable"` ou variable est la variable que vous avez utlisé dans l'exercise précédent.
 >   * ngModel ne sera pas reconnu et doit être ajouter dans appModule
 
-![](ngFormAppModule.png)
+![](images/ngFormAppModule.png)
 
 > * Créez un nouvel `input` pour ajouter du texte
 
 Est-ce que tout fonctionne???? Qu'elle est la difference entre nos deux inputs?
+
+# NGstyle
+
+[Documentation](https://angular.io/api/common/NgStyle)
+
+Permet d'ajuster le style d'un element par un attribut dans la classe de notre component. C'est un binding d'une variable mais avec un element CSS
+
+Example:
+> * Dans notre component beta, ajoutons un ngStyle directive sur notre element
+> `<p [ngStyle]="{backgroundColor: couleur_ngstyle}">example works!</p>`
+> * Dans la class component crée un attribut couleur_ngstyle avec une couleur initial
+> * Dans le constructeur en utilisant la fonction interval, changer la couleur de l'attribute `couleur_ngstyle` at toute les 4 secondes. (**NOTE c'est pas recomendé de mettre une fonction ainsi mais pour les fins de l'execise c'est cool**)
+
+# NGClass
+[Documentation](https://angular.io/api/common/NgClass)
+
+Similar avec ngStyle mais permet de mettre une class dans un objet selon la valeur d'un attribut dans notre class. 
+
+> * Ajoutons dans notre `p` une nouvelle directive `[ngClass]="{'display-1': text_large}"`
+> * Ajoutons dans notre class un booleen qui varie dans notre interval entre vrai ou faut.
+
+## Note
+NGStyle et NGClass permet de prendre un vecteur et appliquer tous les style. Lorsqu'on l'applique sur un seul élément, il est possible aussi d'utiliser une autre expression pour arriver à un résultat identique.
+
+Ainsi:
+```HTML
+<p 
+    [ngStyle]="{backgroundColor: couleur_ngstyle}"
+    [ngClass]="{'display-1': text_large}"
+    >example works!</p>
+```
+
+Est équivalent à:
+```HTML
+<p 
+    [style.backgroundColor]="couleur_ngstyle"
+    [class.display-1]="text_large"
+    >Autre Example works!</p>
+```
 
 ### Exercise : [Binding](angulare/exercises/binding)
 
@@ -417,10 +447,14 @@ Pour démontrer ce processus nous allons modifier l'application de recettes pour
 > * Ainsi que le CSS requis pour l'imgae
 > * Dans le parent au lieu du sommaire on va utiliser le selecteur de notre nouveau component en passant notre recette qui est a afficher `[recette]="recette` (Hum?! meme nom :()
 
-Donc
+### Exercise: Suivant la meme structure créez un application affichant un journal de voyage.
 
-### Exercise, faire la même transformation avec votre Journal de voyage.
+> * Creez le git `pratique-pour-tp` un nouveau projet Angular
+> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
+>   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
+> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas a vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
 
+> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évaluer avec le travail de fin d'année.** 
 
 
 
@@ -508,7 +542,7 @@ La séparation des préoccupations (besoins ou exigences) est la principale rais
 * Expliquez les interpolations ?
 
 ***
-[Aide mémoire Angular 10](dzone-refcard206-angular.pdf)
+[Aide mémoire Angular 10](images/dzone-refcard206-angular.pdf)
 
 
 ### Introduction au routeur Angular
@@ -517,7 +551,7 @@ La séparation des préoccupations (besoins ou exigences) est la principale rais
 
 ♣️ Dès qu'une réponse était reçue du serveur, le navigateur rechargeait la page. Ce processus a entraîné des retards aller-retour et une mauvaise expérience utilisateur pour nos applications :
 
-![](Capture.jfif)
+![](images/Capture.jfif)
 
 ♣️ Le framework Angular fournit le package npm @angular/router, que nous pouvons utiliser pour naviguer entre différents composants dans une application Angular 10. L'ajout d'un routage dans une application angulaire implique les étapes suivantes :
 
@@ -531,7 +565,7 @@ La séparation des préoccupations (besoins ou exigences) est la principale rais
    fichier principal index.html. Toutes les modifications ultérieures d'URL sont interceptées et gérées par le routeur sur le client. Ces types 
    d'applications sont appelées applications à page unique (SPA) car ils ne provoquent pas un rechargement complet d'une page :
 
-![](routeur2.jfif)
+![](images/routeur2.jfif)
 
 ***
 # point-2
@@ -817,7 +851,7 @@ Nous disons au routeur de rediriger vers le chemin /users lorsque l'application 
 
 Il est à noter que nous avons ajouté le chemin de route vide après toutes les autres routes car, comme nous l'avons déjà appris, l'ordre des routes est important. Nous voulons des itinéraires plus spécifiques avant des itinéraires moins spécifiques. Dans le diagramme suivant, vous pouvez voir l'ordre dans lequel le routeur résout les chemins dans notre application:
 
-![](routeur3.jfif)
+![](images/routeur3.jfif)
 
 Nous avons déjà appris à naviguer dans notre application à l'aide de la directive routerLink. C'est la méthode préférée lors de l'utilisation d'éléments d'ancrage dans un modèle. Cependant, dans une application du monde réel, nous utilisons également des boutons pour la navigation. Dans la section suivante, nous allons apprendre à naviguer vers un chemin d'itinéraire impérativement à l'aide d'un élément bouton.
 
@@ -985,7 +1019,7 @@ Le routeur peut réutiliser l'instance d'un composant dès qu'elle reste rendue 
 
 Nous utilisons des routes enfants lorsque nous voulons définir un composant de conteneur pour un module de fonctionnalité qui agira en tant qu'orchestrateur de routage pour les composants de ce module. Il contient un élément de sortie de routeur dans lequel les routes enfants seront chargées. Supposons que nous voulions définir la disposition de notre application Angular comme suit:
 
-![](routeur4.jfif)
+![](images/routeur4.jfif)
 
 UserListComponent doit contenir le contenu existant avec un élément de sortie de routeur. L'élément supplémentaire router-outlet est utilisé pour rendre UserDetailComponent lorsque la route associée est activée.
 

@@ -1,0 +1,19 @@
+<h1>Voici nos recettes</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 mb-3" *ngFor="let item of recettes">
+        <div class="receipe card px-0 mb-3">
+          <!-- L'expession pourrait faire + 1 ou appeler un fonction or method genre {{ toUppercase(recette.title) }}-->
+          <!-- JAMAIS MODIFIER LES VARIABLES ICI!!! -->
+          <h5 class="card-header">{{ item.titre }}</h5>
+          <div class="card-body">
+            <div class="cover-photo-holder">
+              <img src="{{item.photo_couverture ? item.photo_couverture : '/assets/bol_vide.png'}}" alt=""/>
+            </div>
+            <p>{{ item.description }}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

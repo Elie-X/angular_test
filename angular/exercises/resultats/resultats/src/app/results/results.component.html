@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12 text-primary display-4 fwt-bold bg-warning">
+        Moyenne de la classe est: {{moyenne_fixed()}}
+      </div>
+    </div>
+      <div class="row my-2" *ngFor="let item of uneclass">
+        <div class="col-2 ps-4 text-primary fw-bold">{{item.nom}}</div>
+        <div class="col-9 g-0 progress">
+            <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: {{item.note}}%">{{item.note}}</div>
+        </div>
+        <div>
+          <app-alert *ngIf="item.note <= 60"></app-alert>
+        </div>
+        <div>
+          <app-success *ngIf="item.note > moyenne"></app-success>
+        </div>
+    </div>
+  </div>
