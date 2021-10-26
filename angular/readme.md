@@ -351,7 +351,7 @@ On a fait précédament un affichage de nos variables dans notre module.
 >   * Dans notre constructeur appelez la function setTimeout pour changer l'état de la variable a true (!!! important utiliser un arrow function sinon votre this pour votre constructeur ne fonctionnera pas!!!)
 > * Dans le app.component.html de cette exercise ajoutons deux boutons
 >   * Mettre le premier bouton disabled
->   * Mettre le deuxieme bouton `disabled={{!bouton_actif}}`
+>   * ~~Mettre le deuxieme bouton `disabled={{!bouton_actif}}`~~
 >       * Ce binding permet de lier un property avec une expression typescript.
 >         * Cette approche ne fonctionne pas?! car ici ca crée `<input disabled=true>` qui n'est pas interprété par le html 
 >       * Remplacer par `[disabled]="1bouton_actif"`
