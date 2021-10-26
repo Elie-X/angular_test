@@ -427,7 +427,7 @@ Est équivalent à:
     >Autre Example works!</p>
 ```
 
-### Exercise : [Binding](angular/exercises/binding)
+### Exercise : [Binding](angular/exercises/bindings)
 
 # Passage de parametre entre components
 
@@ -514,13 +514,10 @@ A ce point nous pouvons ajouter des recettes. Mais pour le moment ces ajouts son
 > Gestion du click pour une recette
 > DIDIER: https://github.com/didiertremblay/recettes/compare/v30...v31
 
-> Gestion du click pour une recette
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v30...v31
-
 # RouteByURL et Location
 
 > Ajout de routerr function
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v30...v31
+> DIDIER: https://github.com/didiertremblay/recettes/compare/v31...v32
 
 # Service et Observable
 # Validation de Formulaire
