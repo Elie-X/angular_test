@@ -1,6 +1,6 @@
 Effectuez cette exercise en modifiant uniquement le fichier app.component.html
 
-* executer `npm i` dans le repertoir binding pour installer l'environement.
+* executer `npm i` dans le repertoire binding pour installer l'environement.
 * Ajoute un input qui met à jour un attribut username en utilisant un 'two-way-binding'
 * Afficher la variable username en utilisant l'interpolation sous notre input
 * Ajouter un bouton qui est actif uniquement lorsque le username n'est pas vide

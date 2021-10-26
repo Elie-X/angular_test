@@ -427,7 +427,10 @@ Est équivalent à:
     >Autre Example works!</p>
 ```
 
-### Exercise : [Binding](angular/exercises/bindings)
+### Exercise : [Binding](exercises/bindings)
+
+### Exercise : BlackJack
+* Creez une application qui permet de jouer au blackjack
 
 # Passage de parametre entre components
 
@@ -445,7 +448,7 @@ Pour démontrer ce processus nous allons modifier l'application de recettes pour
 > * Ainsi que le CSS requis pour l'imgae
 > * Dans le parent au lieu du sommaire on va utiliser le selecteur de notre nouveau component en passant notre recette qui est a afficher `[recette]="recette` (Hum?! meme nom :()
 
-### Exercise : [Log](angular/exercises/log/../../../readme.md)
+### Exercise : [Log](exercises/log/../../../readme.md)
 
 ### Progression TP Final: Suivant la meme structure démontré pour les recettes créez une application affichant un journal de voyage.
 
