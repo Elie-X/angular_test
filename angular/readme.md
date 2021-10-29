@@ -288,10 +288,6 @@ Chaques components peuvent inclure du CSS pour ajuster le style pour les éléme
 > * Observez le résultat
 > * Question pourquoi il n'y a pas de conflit pour les styles?
 
-DIDIER: Groupe2 est ici
-
-DIDIER: Groupe1 est ici
-
 ### Exercise: [resultats](exercises/resultats)
 
 # Debut livre de recette
@@ -432,26 +428,165 @@ Est équivalent à:
 
 ### Exercise : [Binding](exercises/bindings)
 
-### Exercise : BlackJack
-* Creez une application qui permet de jouer au blackjack
+DIDIER: Groupe2 est ici
+
+DIDIER: Groupe1 est ici
+
+# Integration Bootstrap avec Angular
+
+Pour bootstrap nous avons jusqu'à présent ajouter le CSS de bootstrap ce qui permettais d'avoir le style. Cependant, pour un scenario ou nous désirons avoir les actions tel l'accordéon vu dans le travail pratique, il est aussi requis d'ajouter le javascript. 
+
+L'approche est similaire, il suffit d'ajouter dans le fichier `angular.json` la référence au javascript de Bootstrap.
+
+![Bootstrap JS](images/bootstrap_js.png)
 
 # Passage de parametre entre components
 
+[Documentation](https://angular.io/guide/component-interaction)
+
 Jusqu'à présent nous avons vu que nous pouvons créer plusieurs components et avoir un component utilisé un autre component. Cependant notre utilisation de l'autre component se limite à afficher simplement son contenu. Comment utiliser le component pour lui demander d'afficher de l'information fournis par le parent?
 
-Pour faire ce passage d'information angular fournit le décorateur `@input` [Documentation](https://angular.io/guide/inputs-outputs)
+Pour faire ce passage d'information angular fournit le décorateur `@input` [Documentation](https://angular.io/guide/inputs-outputs). Le décorateur input permet de transmettre de l'information à partir d'un parent vers un component qu'il contient.
 
-DIDIER: https://github.com/didiertremblay/recettes/compare/v8...v10
+## Example
 
-Pour démontrer ce processus nous allons modifier l'application de recettes pour créer un nouveau component qui aura comme responsabilité d'afficher un sommaire pour une recette.
+Pour un component Parent qui possède la définition de son enfant:
 
-> * Créons un component sommaire-recette
-> * Dans sommaire-recette nous allons ajouter un attribut recette pour lequel nous allons décoré de `@Input()` pour lui permettre de recevoir l'information de sont parent
-> * On va déplacé le contenu qui correspond au sommaire dans le html du nouveau component
-> * Ainsi que le CSS requis pour l'imgae
-> * Dans le parent au lieu du sommaire on va utiliser le selecteur de notre nouveau component en passant notre recette qui est a afficher `[recette]="recette` (Hum?! meme nom :()
+```Typescript
+mon_enfant: {
+    nom: string;
+    prenom: string;
+    age: number;
+  } = {
+    nom: 'Tremblay',
+    prenom: 'Kassandra',
+    age: 20
+  };
+```
 
-### Exercise : [Log](exercises/log/../../../readme.md)
+Lorsque le parent invoque sont enfant il le fait de la façon suivante:
+
+```HTML
+<app-enfant [details_enfant]="mon_enfant"></app-enfant>
+```
+
+Dans le component Enfant nous devons créer un attribut qui recevra l'information provenant du parent
+
+```Typescript
+// Dans les imports on doit ajouter Input.... import { Component, Input, OnInit } from '@angular/core';
+
+
+  @Input() details_enfant!: {
+    nom: string;
+    prenom: string;
+    age: number;
+  };
+```
+
+Ici le décorateur permet au framework de populer l'attribut details_enfant avec les informations fournis par le parent.
+
+A partir de ce point, nous pouvons afficher les informations passés par le parent.
+
+```HTML
+<p>
+    Nom: {{details_enfant.nom}}
+</p>
+<p>
+    Prenom: {{details_enfant.prenom}}
+</p>
+<p>
+    Age: {{details_enfant.age}}
+</p>
+```
+
+Pour faire l'inverse ou un component enfant, il est possible de transmettre l'information vers sont parent en utilsant le même processus que nous avons vus pour les passer un event dans notre class. Pour y parvenir nous devons utiliser un Object de type Emmiter qui permet de faire l'échange d'information de l'enfant vers le parent.
+
+## Example
+
+Donc si on continue l'example précédent ou le parent a affiché sont enfant. Si l'enfant contient un champ input qui est l'argent qu'elle a besoin pour finir le mois et qui lui permet de demander a sont parent un peu d'aide monétaire.
+
+Donc dans le html de l'enfant nous ajoutons un change pour inscrire l'argent et un bouton pour effectuer la demande.
+
+```HTML
+Allocation: <input [(ngModel)]="allocation"><button (click)="demandeArgent()">Demande</button>
+```
+
+Nous ajoutons dans la classe du component de l'enfant 
+
+```Typescript
+// Ajout de EventEmitter et Output
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+//...
+
+  // Cree un émetteur pour générer un événement qui permettera de transmettre un nombre
+  @Output() demande = new EventEmitter<number>();
+  // Pour contenir le montant d'allocation
+  allocation=0;
+```
+
+Ensuite nous ajoutons toujours dans la classe de l'enfant une fonction pour répondre au clique du bouton et transmettre au parent le montant demandé pour l'allocation du mois
+
+```Typescript
+  demandeArgent(): void {
+    this.demande.emit(this.allocation);
+  }
+```
+
+Ce qui va transmettre un événement "demande" avec le montant "this.allocation".
+
+Dans le parent, nous devons ajouter dans notre référence à notre enfant un binding pour le nouvelle événement qui sera généré.
+
+```HTML
+<app-enfant 
+    [details_enfant]="mon_enfant"
+    (demande)="taFilleAppel($event)"
+    ></app-enfant>
+```
+
+Et finalement dans la classe du parent, il ne reste plus qu'à recevoir le nouvelle événement.
+
+```Typescript
+  taFilleAppel(montant: number): void {
+    this.derniere_demande = montant;
+  }
+```
+
+Ce type de passage d'evenement fonctionne uniquement pour le parent direct. Si on crée un petit enfant, les événements transmit par le petit enfant ne peuvent être reçu que par sont parent. Si on désire passer de l'infomration aux travers de plusieurs niveau de composante il faut que chaque composante reçoivent l'information et le retransmettes à leur parents. 
+
+Plus tard nous verrons le concept de service qui permet à plusieurs componsent d'échanger des l'information.
+
+
+
+
+
+
+### Exercise : [Log](exercises/log/readme.md)
+
+
+
+
+
+
+
+
+```Typescript
+```
+
+```Typescript
+```
+
+```Typescript
+```
+
+
+
+
+### Exercise : [BlackJack](exercises/poker)
+* Creez une application qui permet de jouer au blackjack
+
+
+
 
 ### Progression TP Final: Suivant la meme structure démontré pour les recettes créez une application affichant un journal de voyage.
 
@@ -462,106 +597,26 @@ Pour démontrer ce processus nous allons modifier l'application de recettes pour
 
 > **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évalué avec le travail de fin d'année.** 
 
+# Router
+
+# Formulaire
+
+# Services
+
+# Elements de Navigation
+
+# Pipe fitre
+
+# RxJS
+
 
 
 
 
 ## DIDIER TO ADD Cover
 
-# Etapes pour l'application Recettes
-> Ajout d'un formulaire pour une recette
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v10...v11
-
-> Completons le formulaire et ajout de binding
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v11...v12
-
-> Ajout de la recette du formulaire dans nos recettes
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v12...v13
-
-A ce point nous pouvons ajouter des recettes. Mais pour le moment ces ajouts sont local dans notre SPA il n'y a pas de serveur donc si la page est rechargé tous changement est perdu. Mais c'est tous de même cool si on compare à faire ce même travail en javascript.
-
-> Demontrons le Emit avec notre recette. Ici on ajoute un boutons qui affichera la recette de notre component sommaire dans le parent. Pour démontrer qu'on est en mesure de passer la structure de données d'un enfant vers sont parent.
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v13...v14
-
-# Router module
-
-> Maintenant que nous avons des bases pour le routing. Commencons à déplacer nos components dans une structure avec plusieurs page. C'est toujours un SPA donc il n'y a qu'une page mais qui est modifié par Angulare pour créer l'illusion de plusieurs page.
-> Dans un premier temps ajoutons uniquement le module mais sans créer de nouvelle pages.
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v14...v24
-
-> On doit changer notre app component pour lui indiquer qu'on doit utiliser le router.
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v24...v25
-
-> Aussi on doit indiquer à Angular ou diriger un usager qui arrive à la racine de notre site.
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v25...v26
-
-> Changons la génération de notre contenu pour évoluer notre application vers un intégration avec le serveur
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v26...v27
-
-> Ajoutons une vue pour un affichage d'étaillé d'une recette.
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v28
-
-** Dans cette page nous avons triché pour permettre d'afficher du contenu.**
-
-# Router page invalide
-
-> Ajout d'une route pour les pages invalides
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v28...v29
-
-> Ajout des details a notre recette
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v28...v29
-
-> Lien pour une vue detaillé
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v28...v29
-
-> Ajout des details
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v29...v30
-
-> Gestion du click pour une recette
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v30...v31
-
-# RouteByURL et Location
-
-> Ajout de routerr function
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v31...v32
-
-# Service et Observable
-# Validation de Formulaire
-# 
 
 
-
-> Gestion de formulaire
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Creation de services
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Gestion du "feedback" pour les requetes lente du serveur
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Validation des forms utilisant Javascript
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Validation des forms utilisant un template
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Validation des forms reactives
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Gestion des images
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Utilisation des pipelines
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Modifier une recette
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Effacer une recette
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Deployment
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-> Tests
-> DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
-
-#
-
-
-- [ ] ngStyle
-- [ ] ngClass
-- [ ] Distribuer l'avancement du livre de recette
 - [ ] Barre de navigation
 - [ ] Model
 - [ ] Directive
