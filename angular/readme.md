@@ -432,6 +432,22 @@ DIDIER: Groupe2 est ici
 
 DIDIER: Groupe1 est ici
 
+## Passer du contenu par ng-content
+
+Un autre méthod pour passer des information vers un component à partir du parent est une directive `ng-content`
+
+![](images/ngcontent.png)
+
+## Acceder a une element dans notre HTML pour le passer en paramettre
+
+Il est aussi possible de passer une reference a un component du DOM utilisant cette approach
+
+![](images/componentpassing.png)
+
+Aussi possible dans notre class d'utiliser des références vers notre DOM. Ce genre d'approchent ne sont pas idéal mais peuvent parfois être requis.
+
+![](images/recevoirDOM.png)
+
 # Integration Bootstrap avec Angular
 
 Pour bootstrap nous avons jusqu'à présent ajouter le CSS de bootstrap ce qui permettais d'avoir le style. Cependant, pour un scenario ou nous désirons avoir les actions tel l'accordéon vu dans le travail pratique, il est aussi requis d'ajouter le javascript. 
@@ -474,7 +490,6 @@ Dans le component Enfant nous devons créer un attribut qui recevra l'informatio
 
 ```Typescript
 // Dans les imports on doit ajouter Input.... import { Component, Input, OnInit } from '@angular/core';
-
 
   @Input() details_enfant!: {
     nom: string;
@@ -559,22 +574,6 @@ Ce type de passage d'evenement fonctionne uniquement pour le parent direct. Si o
 Plus tard nous verrons le concept de service qui permet à plusieurs componsent d'échanger des l'information.
 
 ### Exercise : [Log](exercises/log/readme.md)
-
-## Passer du contenu par ng-content
-
-Un autre méthod pour passer des information vers un component à partir du parent est une directive `ng-content`
-
-![](images/ngcontent.png)
-
-## Acceder a une element dans notre HTML pour le passer en paramettre
-
-Il est aussi possible de passer une reference a un component du DOM utilisant cette approach
-
-![](images/componentpassing.png)
-
-Aussi possible dans notre class d'utiliser des références vers notre DOM. Ce genre d'approchent ne sont pas idéal mais peuvent parfois être requis.
-
-![](images/recevoirDOM.png)
 
 ### Exercise [employees](exercises/employees/readme.md)
 

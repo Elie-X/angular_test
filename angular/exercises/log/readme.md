@@ -2,7 +2,7 @@ Dans cette exercise nous mettrons en pratiques différents types de bindings et 
 
 * Créer une application angular
 * Créer un component bouton
-  * qui inclus un bouton "Sousmettre"
+  * qui inclus un bouton "Soumettre"
   * Ajouter un input pour récupérer du texte
 * Lorsque le bouton est cliqué vous devez sauvegarder le text contenu dans l'input ainsi que l'heure courrante dans la classe du parent
   * NOTE: Si il n'y a pas de contenu dans l'input vous ne devez pas pouvoir cliquer sur le bouton add

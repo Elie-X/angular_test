@@ -1,76 +1,35 @@
 import { Injectable } from '@angular/core';
-import { observable, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Employee } from '../model/users.model';
+import * as faker from 'faker';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  private liste_employees:Employee[] = [
-    {
-      "id": 1,
-      "first_name": "Alison",
-      "last_name": "Gutmann",
-      "email": "Madge87@hotmail.com"
-    },
-    {
-      "id": 2,
-      "first_name": "Robyn",
-      "last_name": "Kutch",
-      "email": "Efrain13@gmail.com"
-    },
-    {
-      "id": 3,
-      "first_name": "Yesenia",
-      "last_name": "West",
-      "email": "Carmen.Sanford@hotmail.com"
-    },
-    {
-      "id": 4,
-      "first_name": "Sedrick",
-      "last_name": "Schneider",
-      "email": "Abby77@gmail.com"
-    },
-    {
-      "id": 5,
-      "first_name": "Adelia",
-      "last_name": "Herman",
-      "email": "Adolphus.Kiehn65@yahoo.com"
-    },
-    {
-      "id": 6,
-      "first_name": "Godfrey",
-      "last_name": "Dicki",
-      "email": "Kenneth_Braun21@hotmail.com"
-    },
-    {
-      "id": 7,
-      "first_name": "Llewellyn",
-      "last_name": "Abshire",
-      "email": "Margarette30@gmail.com"
-    },
-    {
-      "id": 8,
-      "first_name": "Will",
-      "last_name": "Wyman",
-      "email": "Flo_Flatley@hotmail.com"
-    },
-    {
-      "id": 9,
-      "first_name": "Hannah",
-      "last_name": "Rice",
-      "email": "Cruz_Bernhard57@gmail.com"
-    },
-    {
-      "id": 10,
-      "first_name": "Brannon",
-      "last_name": "Predovic",
-      "email": "Raul_OKon@yahoo.com"
-    }
-  ];
+  private liste_employees:Employee[] = [];
 
-  constructor() { }
+  constructor() {
+    // Initialize a list of users from the library Faker
+    // npm install faker --save
+    // npm install @types/faker --save
+    // npm i --save-dev @types/faker
+    for(let i=0;i<20;i++) {
+        console.log(faker.name.firstName());
+        this.liste_employees.push(
+            {
+                id: i,
+                first_name: faker.name.firstName(),
+                last_name: faker.name.lastName(),
+                email: faker.internet.email(),
+                address: faker.address.streetAddress(),
+                country: faker.address.country()
+            }
+        );
+    }
+     
+   }
 
   public getEmployees(): Observable<Employee[]> {
       return new Observable<Employee[]>(
