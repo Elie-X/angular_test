@@ -440,7 +440,7 @@ L'approche est similaire, il suffit d'ajouter dans le fichier `angular.json` la 
 
 ![Bootstrap JS](images/bootstrap_js.png)
 
-# Passage de parametre entre components
+# Passage de parametres entre composantes
 
 [Documentation](https://angular.io/guide/component-interaction)
 
@@ -544,6 +544,8 @@ Dans le parent, nous devons ajouter dans notre référence à notre enfant un bi
     ></app-enfant>
 ```
 
+**NOTE:** Input peut aussi avoir un Alias pour créer un alias dans le template.
+
 Et finalement dans la classe du parent, il ne reste plus qu'à recevoir le nouvelle événement.
 
 ```Typescript
@@ -556,155 +558,53 @@ Ce type de passage d'evenement fonctionne uniquement pour le parent direct. Si o
 
 Plus tard nous verrons le concept de service qui permet à plusieurs componsent d'échanger des l'information.
 
-
-
-
-
-
 ### Exercise : [Log](exercises/log/readme.md)
 
+## Passer du contenu par ng-content
 
+Un autre méthod pour passer des information vers un component à partir du parent est une directive `ng-content`
 
+![](images/ngcontent.png)
 
+## Acceder a une element dans notre HTML pour le passer en paramettre
 
+Il est aussi possible de passer une reference a un component du DOM utilisant cette approach
 
+![](images/componentpassing.png)
 
+Aussi possible dans notre class d'utiliser des références vers notre DOM. Ce genre d'approchent ne sont pas idéal mais peuvent parfois être requis.
 
-```Typescript
-```
+![](images/recevoirDOM.png)
 
-```Typescript
-```
+### Exercise [employees](exercises/employees/readme.md)
 
-```Typescript
-```
+# NgInit et autre 
 
+Pour l'exercise précédent nous avons mis le code pour récupérer les informations du service dans le ngInit. Angular possède différent phase qui permette dans notre dévelopment d'application d'intercepter ou d'exécuter notre code lorsque c'est approprié. Dans notre implementation, avoir utilisé le `constructor`, nous aurais conduit a un erreur car l'attribut n'aurait pas été créer proprement car le constructeur se serait executé avant l'initialization des fonction @input.
 
-
-
-### Exercise : [BlackJack](exercises/poker)
-* Creez une application qui permet de jouer au blackjack
-
-
-
-
-### Progression TP Final: Suivant la meme structure démontré pour les recettes créez une application affichant un journal de voyage.
-
-> * Creez le git `pratique-pour-tp` un nouveau projet Angular
-> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
->   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
-> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas à vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
-
-> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évalué avec le travail de fin d'année.** 
+Les differents méthodes définit dans Angular sont:
+* ngOnInit
+  * Appelé lorsque le components est initialisé, donc ses attributs sont initialisés et prêts a être utilisé
+* ngOnChanges
+  * Appelé lorsqu'un propriété de notre class est modifié
+* ngDoCheck
+  * Appelé a chaque changementment our événements dans l'application
+* ngAfterContentInit
+  * Appelé lorsque le contenu de ng_content fut mis dans la vue
+* ngAfterContentCheck
+  * Appelé après chaque traitement pour changement
+* ngAfterViewInit
+  * Appelé lorsque que tous les elements pour le DOM rendenring soient initialisé
+* ngAfterViewCheck
+  * Appelé après chaque vérification du DOM pour événement
+* ngOnDestroy
+  * Appelé lorsque le component est éléminer de la vue
 
 # Router
 
-# Formulaire
+## Introduction au routeur Angular
 
-# Services
-
-# Elements de Navigation
-
-# Pipe fitre
-
-# RxJS
-
-
-
-
-
-## DIDIER TO ADD Cover
-
-
-
-- [ ] Barre de navigation
-- [ ] Model
-- [ ] Directive
-- [ ] CSS
-- [ ] Form Validation methods
-- [ ] Service
-- [ ] Event Emitter
-- [ ] Observable
-- [ ] RxJS - Chat app?
-  - [ ] Mouse move?
-- [ ] Filter | Pipe
-- [ ] Debuggint
-  - [ ] Create an example with error that need to be fixed (Logical et Initialisation error)
-  - [ ] Show Augury
-- [ ] Testing
-
-
-
-# NE PAS CONTINUER DOIS ETRE AJUSTÉ
-# NE PAS CONTINUER DOIS ETRE AJUSTÉ
-# NE PAS CONTINUER DOIS ETRE AJUSTÉ
-# NE PAS CONTINUER DOIS ETRE AJUSTÉ
-
-🌿 Le but des services d'Angular 
-
-Les services angulaires sont des objets **Singleton** qui ne sont instanciés qu'une seule fois pendant la durée de vie d'une application. Ils contiennent des méthodes qui conservent les données tout au long de la vie d'une application, c'est-à-dire que les données ne sont pas actualisées et sont disponibles à tout moment. 
-
-🌿 L'objectif principal d'un service est d'organiser et de partager la logique métier, les modèles ou les données et fonctions avec différents composants d'une application Angular.
-
-🌿 Pourquoi utiliser les services en Angular?
-La séparation des préoccupations (besoins ou exigences) est la principale raison pour laquelle les services angulaires ont vu le jour. Un service Angular est un objet sans état et fournit des fonctions très utiles. Ces fonctions peuvent être appelées à partir de n'importe quel composant d'Angular, comme les contrôleurs, les directives, etc. Cela aide à diviser l'application Web en petites unités logiques différentes qui peuvent être réutilisées.
-
-🌿 Par exemple : Une application Angular peut avoir plusieurs contrôleurs (, pour récupérer les données requises par l'ensemble de l'application. Faire un appel AJAX au serveur à partir du contrôleur est redondant, car chaque contrôleur utilisera un code similaire pour faire un appel pour les mêmes données. 
-
-🌿 Dans de tels cas, il est extrêmement utile d'utiliser un service, car nous pouvons écrire un service contenant le code pour récupérer les données du serveur et injecter le service dans le contrôleur. 
-
-🌿 Les services auront des fonctions pour passer un appel. Nous pouvons utiliser ces fonctions de services dans le contrôleur et faire des appels au serveur, de cette façon nous n'avons pas besoin d'écrire à nouveau le même code et il peut également être utilisé dans des composants autres que les contrôleurs. De plus, les responsables du traitement n'ont plus à effectuer la tâche de récupération des données, car les services s'en chargent, atteignant ainsi l'objectif de séparation des préoccupations.
-
-***
-
-🌿 Qu’est-ce qu’un patron de conception (Design Pattern) ?
-
-🌼 Les patrons de conception sont des solutions classiques à des problèmes récurrents de la conception de logiciels. Ce sont des sortes de plans ou de schémas que l’on peut personnaliser afin de résoudre un problème récurrent dans notre code.
-
-🌼 Vous ne pouvez pas vous contenter de trouver un patron et de le recopier dans votre programme comme vous le feriez avec des fonctions ou des librairies prêtes à l’emploi. Un patron, ce n’est pas un bout de code spécifique, mais plutôt un concept général pour résoudre un problème précis. Vous pouvez suivre le principe du patron et implémenter une solution qui convient à votre propre programme.
-
-🌼 Les patrons sont souvent confondus avec les algorithmes, car ils décrivent tous deux des solutions classiques à des problèmes connus. Un algorithme définit toujours clairement un ensemble d’actions qui va vous mener vers un objectif, alors qu’un patron, c’est la description d’une solution à un plus haut niveau. Le code utilisé pour implémenter un même patron peut être complètement différent s’il est appliqué à deux programmes distincts.
-
-🌼 Un algorithme c’est un peu comme une recette de cuisine, ses étapes sont claires et vous guident vers un objectif précis. 
-
-🌼 Un patron, c’est plutôt comme un plan : vous pouvez voir ses fonctionnalités et les résultats obtenus, mais la manière de l’implémenter vous revient.
-
-🌿 Que trouve-t-on dans un patron de conception ?
-
-🌼 La majorité des patrons sont présentés de façon très générale, afin qu’ils soient reproductibles dans tous les contextes. Voici les différentes sections que vous retrouverez habituellement dans la description d’un patron :
-
-* L’Intention du patron permet de décrire brièvement le problème et la solution.
-* La Motivation explique en détail la problématique et la solution offerte par le patron.
-* La Structure des classes montre les différentes parties du patron et leurs relations.
-* L’Exemple de code écrit dans un des langages de programmation les plus populaires facilite la compréhension générale de l’idée derrière le patron.
-
-***
-* 🍄  [Exercice1](#Théorie)
-***
-
-* Définir Angular ?
-* Décrivez brièvement l’architecture d’un projet Angular 10 ?
-* Expliquez brièvement (clairement) le rôle du fichier « package.json »?
-* Expliquez brièvement (clairement) le rôle du fichier « angular.json »?
-* Définir les termes suivants :
-  * Selector 
-  * templateUrl 
-  * template
-  * styleUrls 
-  * style
-* Quel est le rôle de NPM?
-* Quels sont les avantages de l'utilisation d'Angular?
-* À quoi sert Angular principalement ?
-* Quelles sont les expressions angulaires?
-* Expliquez les interpolations ?
-
-***
-[Aide mémoire Angular 10](images/dzone-refcard206-angular.pdf)
-
-
-### Introduction au routeur Angular
-
-🌼 Dans les applications Web traditionnelles, lorsque nous voulions passer d'une vue à une autre, nous devions demander une nouvelle page au serveur. Le navigateur créerait une URL pour la vue et l'envoyait au serveur. 
+Dans les applications Web traditionnelles, lorsque nous voulions passer d'une vue à une autre, nous devions demander une nouvelle page au serveur. Le navigateur créerait une URL pour la vue et l'envoyait au serveur. 
 
 ♣️ Dès qu'une réponse était reçue du serveur, le navigateur rechargeait la page. Ce processus a entraîné des retards aller-retour et une mauvaise expérience utilisateur pour nos applications :
 
@@ -725,14 +625,11 @@ La séparation des préoccupations (besoins ou exigences) est la principale rais
 ![](images/routeur2.jfif)
 
 ***
-# point-2
-### Spécification
+## Spécification
 
 > Comme nous l'avons déjà vu, les applications Web modernes et traditionnelles réagissent différemment lorsqu'une URL change dans l'application. 
 > L'architecture de chaque navigateur joue un rôle essentiel dans ce comportement. 
-
 > Les navigateurs plus anciens lancent une nouvelle requête au serveur lorsque l'URL change. 
-
 > Les navigateurs modernes, également appelés navigateurs HTML5, peuvent modifier l'URL et l'historique du navigateur, lors de la navigation dans différentes vues, sans envoyer de requête au serveur en utilisant une technique appelée HTML5 pushState.
 
 ```typescript
@@ -761,8 +658,7 @@ Une application Angular doit définir la balise HTML de base dans le fichier ind
 
 🌼 La CLI Angular ajoute la balise de base par défaut lors de la création d'une nouvelle application Angular et définit la valeur **href* sur la racine de l'application, /. Si votre application réside dans un dossier différent de celui de l'application, vous devez la modifier en fonction du nom de ce dossier.
 
-# point-3
-### Importation du module routeur
+## Importation du module routeur
 La bibliothèque de routeurs angulaires contient RouterModule, un module angulaire que nous devons importer dans notre application pour commencer à utiliser les fonctionnalités de routage :
 
 ```typescript
@@ -784,7 +680,6 @@ La méthode forRoot de RouterModule renvoie un module angulaire qui contient un 
 
 Il accepte un seul paramètre, qui est la configuration d'itinéraire de l'application.
 
-# point-4
 ### Configurer le routeur
 La variable routes que nous transmettons dans la méthode forRoot est une liste d'objets Routes qui spécifient les routes existantes dans l'application et les composants qui doivent répondre à une route spécifique. Cela peut ressembler à ceci :
 
@@ -801,8 +696,7 @@ La navigation dans une application Angular 10 peut se produire soit en modifiant
 
 Si l'utilisateur tente d'accéder à une URL qui ne correspond à aucune route, Angular active un type de route personnalisé appelé route générique. La route générique a une propriété de chemin avec deux astérisques et correspond à n'importe quelle URL. La propriété du composant est généralement un PageNotFoundComponent spécifique à l'application ou le composant principal de l'application.
 
-# point-5
-### Rendu des composants
+## Rendu des composants
 L'une des directives que la bibliothèque de routeurs exporte à l'aide de la méthode forRoot est router-outlet. Il est utilisé comme composant angulaire et agit comme un espace réservé pour les composants activés avec le routage.
 
 En règle générale, l'AppComponent d'une application Angular 10 est utilisé uniquement pour fournir la disposition principale de l'application et orchestrer tous les autres composants. Nous devons l'écrire une fois et l'oublier, et ne pas le modifier lorsque nous voulons ajouter une nouvelle fonctionnalité à notre application. Ainsi, un exemple typique d'AppComponent est le suivant :
@@ -817,8 +711,7 @@ app-header et app-footer sont des composants de mise en page, et router-outlet e
 Nous avons déjà couvert les bases et fourni une configuration minimale du routeur. Dans la section suivante, nous examinerons un exemple plus réaliste et élargirons davantage nos connaissances sur le module de routage et comment il peut nous aider.
 
 ***
-# point-5
-### Création d'une application angulaire avec routage
+## Création d'une application angulaire avec routage
 
 ```shell
 Commande pour créer une application avec le module routing
@@ -857,8 +750,7 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 ***
-# point-7
-### Ajout de la configuration de l'itinéraire à notre application Angular
+## Ajout de la configuration de l'itinéraire à notre application Angular
 
 Le module principal de notre application n'a pas encore de configuration d'itinéraire. La variable routes dans AppRoutingModule est un tableau vide. Commençons par le remplir de valeurs :
 
@@ -883,8 +775,7 @@ const routes: Routes = [
 ```
 Maintenant que nous avons configuré le routage de notre application, nous devons simplement apprendre à naviguer vers une route spécifique.
 
-# point-8
-### Navigation via les routes
+## Navigation via les routes
 
 Nous allons utiliser deux directives de routeur pour effectuer la navigation dans notre application, la directive router-outlet que nous avons déjà vue et routerLink. Nous appliquons la directive routerLink pour ancrer les éléments HTML, et nous attribuons le chemin de route dans lequel nous voulons naviguer en tant que valeur. Notez que le chemin commence par / par opposition à la propriété path dans l'objet de définition d'itinéraire. 
 Commençons :
@@ -902,8 +793,7 @@ Commençons :
 Nous sommes maintenant prêts à prévisualiser notre application Angular. Exécutez ng serve et cliquez sur le lien Users. L'application doit afficher le modèle de UsersListComponent sous l'élément nav. Il doit également mettre à jour l'URL du navigateur pour qu'elle corresponde au chemin de l'itinéraire. Maintenant, essayez de faire le contraire. Accédez au chemin racine, http: // localhost: 4200, et ajoutez le chemin /users à la fin de l'URL.
 
 ***
-# point-8
-### Modules de routage
+## Modules de routage
 
 À ce stade, nous avons configuré l'itinéraire pour que le routage fonctionne comme il se doit. Cependant, cette approche ne s'adapte pas aussi bien. Au fur et à mesure que notre application se développe, de plus en plus de routes peuvent être ajoutées à AppRoutingModule. Ainsi, nous devrions créer un module de fonctionnalités distinct pour nos composants qui aura également un module de routage dédié.
 
@@ -953,8 +843,7 @@ Actuellement, la configuration de l'itinéraire de notre application est assez s
 * Que va-t-il se passer si nous essayons de naviguer vers un chemin de route inexistant?
 
 ***
-# point-9
-### Gestion des routes inconnus 
+## Gestion des routes inconnus 
 
 Nous avons déjà rencontré le concept de routes inconnues dans la section Présentation du routeur angulaire. Nous avons configuré une route générique pour afficher un PageNotFoundComponent lorsque notre application essaie de naviguer vers un chemin de route qui n'existe pas. Il est maintenant temps d'ajouter ce composant :
 
@@ -989,8 +878,7 @@ Selon nos configurations d'itinéraire, nous n'avons pas défini un tel chemin. 
 Nous devons définir une route par défaut pour notre application Angular, ce qui nous amène au premier scénario que nous avons décrit: comment définir un chemin de route par défaut lorsque notre application démarre.
 
 *** 
-# point-10
-### Configurer la route par défaut
+## Configurer la route par défaut
 
 Nous définissons la propriété path d'une route sur une chaîne vide pour indiquer que la route est celle par défaut pour une application Angular. Dans notre cas, nous voulons que le chemin de route par défaut affiche UsersListComponent:
 
@@ -1012,8 +900,7 @@ Il est à noter que nous avons ajouté le chemin de route vide après toutes les
 
 Nous avons déjà appris à naviguer dans notre application à l'aide de la directive routerLink. C'est la méthode préférée lors de l'utilisation d'éléments d'ancrage dans un modèle. Cependant, dans une application du monde réel, nous utilisons également des boutons pour la navigation. Dans la section suivante, nous allons apprendre à naviguer vers un chemin d'itinéraire impérativement à l'aide d'un élément bouton.
 
-# point-11
-### Naviguer impérativement vers un itinéraire
+## Naviguer impérativement vers un itinéraire
 
 Lorsque nous naviguons vers une route générique, le modèle de la propriété du composant est affiché à l'écran. Cependant, comme nous l'avons vu, la barre d'adresse du navigateur reste sur l'URL invalide. Nous devons donc fournir un moyen pour l'utilisateur de s'échapper de cette route:
 
@@ -1524,6 +1411,179 @@ Si vous quittez et cliquez à nouveau sur le lien À propos, vous remarquerez qu
 Un mot d'avertissement, cependant. Un service angulaire est enregistré auprès de l'injecteur racine de l'application à l'aide de la propriété providedIn du décorateur @Injectable. Les modules à chargement différé créent un injecteur distinct qui est un enfant immédiat de l'injecteur d'application racine. Si vous utilisez un service Angular enregistré avec l'injecteur d'application racine dans un module à chargement différé, vous vous retrouverez avec une instance distincte du service dans les deux cas. Donc, nous devons être prudents quant à la façon dont nous utilisons les services dans les modules chargés paresseusement.
 
 Les modules à chargement différé sont des modules angulaires standard, nous pouvons donc contrôler leur accès à l'aide de gardes.
+
+
+
+# Formulaire
+
+# Services
+
+Le concept de service permet de créer un objet qui est accessible par tous les components pour échanger de l'information
+
+
+## Creation d'un service
+
+La commande `ng generate service <nom du service> va créer un nouveau service dans notre application pour permettre un tel échange
+
+```Shell
+$ mkdir services
+Gitbash recettes (main)
+$ ng generate service services/recette
+CREATE src/app/services/recette.service.spec.ts (362 bytes)
+CREATE src/app/services/recette.service.ts (136 bytes)
+```
+
+Ici le CLI va créer un nouveau module exportant un class au nom de ce service. Cette class inclue le module Observable provenant de la librairie rsjs qui permet de créer un mécanisme asynchrone pour échanger des information. Similar au mécanism de promise.
+
+[Documentation](https://angular.io/guide/observables)
+
+```Typescript
+  getAllReceipes(): Observable<Recette []> {
+    return new Observable<Recette []>(
+      (observable) => {
+        // Retourne l'information lorsque disponible
+        // Ici pour cette exemple l'information est déjà disponible, en temps normal ici on pourrait y mettre
+        // du code pour récupérer sur un serveur et effectuer le complete lorsque terminé
+        observable.next(this.recettes);
+        // Indique que l'operation est complété
+        observable.complete();
+      }
+    )
+  }
+```
+
+# Elements de Navigation
+
+# Pipe fitre
+
+# RxJS
+
+
+
+
+
+
+
+
+
+```Typescript
+```
+
+```Typescript
+```
+
+```Typescript
+```
+
+
+
+
+### Exercise : [BlackJack](exercises/poker)
+* Creez une application qui permet de jouer au blackjack
+
+
+
+
+### Progression TP Final: Suivant la meme structure démontré pour les recettes créez une application affichant un journal de voyage.
+
+> * Creez le git `pratique-pour-tp` un nouveau projet Angular
+> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
+>   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
+> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas à vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
+
+> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évalué avec le travail de fin d'année.** 
+
+
+
+
+## DIDIER TO ADD Cover
+
+
+
+- [ ] Barre de navigation
+- [ ] Model
+- [ ] Directive
+- [ ] CSS
+- [ ] Form Validation methods
+- [ ] Service
+- [ ] Event Emitter
+- [ ] Observable
+- [ ] RxJS - Chat app?
+  - [ ] Mouse move?
+- [ ] Filter | Pipe
+- [ ] Debuggint
+  - [ ] Create an example with error that need to be fixed (Logical et Initialisation error)
+  - [ ] Show Augury
+- [ ] Testing
+
+
+
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+# NE PAS CONTINUER DOIS ETRE AJUSTÉ
+
+🌿 Le but des services d'Angular 
+
+Les services angulaires sont des objets **Singleton** qui ne sont instanciés qu'une seule fois pendant la durée de vie d'une application. Ils contiennent des méthodes qui conservent les données tout au long de la vie d'une application, c'est-à-dire que les données ne sont pas actualisées et sont disponibles à tout moment. 
+
+🌿 L'objectif principal d'un service est d'organiser et de partager la logique métier, les modèles ou les données et fonctions avec différents composants d'une application Angular.
+
+🌿 Pourquoi utiliser les services en Angular?
+La séparation des préoccupations (besoins ou exigences) est la principale raison pour laquelle les services angulaires ont vu le jour. Un service Angular est un objet sans état et fournit des fonctions très utiles. Ces fonctions peuvent être appelées à partir de n'importe quel composant d'Angular, comme les contrôleurs, les directives, etc. Cela aide à diviser l'application Web en petites unités logiques différentes qui peuvent être réutilisées.
+
+🌿 Par exemple : Une application Angular peut avoir plusieurs contrôleurs (, pour récupérer les données requises par l'ensemble de l'application. Faire un appel AJAX au serveur à partir du contrôleur est redondant, car chaque contrôleur utilisera un code similaire pour faire un appel pour les mêmes données. 
+
+🌿 Dans de tels cas, il est extrêmement utile d'utiliser un service, car nous pouvons écrire un service contenant le code pour récupérer les données du serveur et injecter le service dans le contrôleur. 
+
+🌿 Les services auront des fonctions pour passer un appel. Nous pouvons utiliser ces fonctions de services dans le contrôleur et faire des appels au serveur, de cette façon nous n'avons pas besoin d'écrire à nouveau le même code et il peut également être utilisé dans des composants autres que les contrôleurs. De plus, les responsables du traitement n'ont plus à effectuer la tâche de récupération des données, car les services s'en chargent, atteignant ainsi l'objectif de séparation des préoccupations.
+
+***
+
+🌿 Qu’est-ce qu’un patron de conception (Design Pattern) ?
+
+🌼 Les patrons de conception sont des solutions classiques à des problèmes récurrents de la conception de logiciels. Ce sont des sortes de plans ou de schémas que l’on peut personnaliser afin de résoudre un problème récurrent dans notre code.
+
+🌼 Vous ne pouvez pas vous contenter de trouver un patron et de le recopier dans votre programme comme vous le feriez avec des fonctions ou des librairies prêtes à l’emploi. Un patron, ce n’est pas un bout de code spécifique, mais plutôt un concept général pour résoudre un problème précis. Vous pouvez suivre le principe du patron et implémenter une solution qui convient à votre propre programme.
+
+🌼 Les patrons sont souvent confondus avec les algorithmes, car ils décrivent tous deux des solutions classiques à des problèmes connus. Un algorithme définit toujours clairement un ensemble d’actions qui va vous mener vers un objectif, alors qu’un patron, c’est la description d’une solution à un plus haut niveau. Le code utilisé pour implémenter un même patron peut être complètement différent s’il est appliqué à deux programmes distincts.
+
+🌼 Un algorithme c’est un peu comme une recette de cuisine, ses étapes sont claires et vous guident vers un objectif précis. 
+
+🌼 Un patron, c’est plutôt comme un plan : vous pouvez voir ses fonctionnalités et les résultats obtenus, mais la manière de l’implémenter vous revient.
+
+🌿 Que trouve-t-on dans un patron de conception ?
+
+🌼 La majorité des patrons sont présentés de façon très générale, afin qu’ils soient reproductibles dans tous les contextes. Voici les différentes sections que vous retrouverez habituellement dans la description d’un patron :
+
+* L’Intention du patron permet de décrire brièvement le problème et la solution.
+* La Motivation explique en détail la problématique et la solution offerte par le patron.
+* La Structure des classes montre les différentes parties du patron et leurs relations.
+* L’Exemple de code écrit dans un des langages de programmation les plus populaires facilite la compréhension générale de l’idée derrière le patron.
+
+***
+* 🍄  [Exercice1](#Théorie)
+***
+
+* Définir Angular ?
+* Décrivez brièvement l’architecture d’un projet Angular 10 ?
+* Expliquez brièvement (clairement) le rôle du fichier « package.json »?
+* Expliquez brièvement (clairement) le rôle du fichier « angular.json »?
+* Définir les termes suivants :
+  * Selector 
+  * templateUrl 
+  * template
+  * styleUrls 
+  * style
+* Quel est le rôle de NPM?
+* Quels sont les avantages de l'utilisation d'Angular?
+* À quoi sert Angular principalement ?
+* Quelles sont les expressions angulaires?
+* Expliquez les interpolations ?
+
+***
+[Aide mémoire Angular 10](images/dzone-refcard206-angular.pdf)
+
 
 IMPORTANT [^1]
 

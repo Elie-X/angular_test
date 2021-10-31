@@ -97,4 +97,21 @@ A ce point nous pouvons ajouter des recettes. Mais pour le moment ces ajouts son
 > Tests
 > DIDIER: https://github.com/didiertremblay/recettes/compare/v27...v27
 
-#
+# Service
+
+```Shell
+$ mkdir services
+Gitbash recettes (main)
+$ ng generate service services/recette
+CREATE src/app/services/recette.service.spec.ts (362 bytes)
+CREATE src/app/services/recette.service.ts (136 bytes)
+```
+
+# Pour rouler avec proxy
+
+`ng serve --proxy-config proxy.conf.json`
+* Pas vraiment recommende car c'est local pour le test et c'est plus utile d'apprendre a naviger avec les CORS et autres problematiques.
+* Montrer pourquoi et comment ca fonction
+  * Notre serveur aussi retourne le contenu du server
+  * On peut changer le CORS et encore fonctionner
+  * On pourrait l'utiliser pour experimenter avec des API publiques pour lequels on ne s'est pas enregistré
