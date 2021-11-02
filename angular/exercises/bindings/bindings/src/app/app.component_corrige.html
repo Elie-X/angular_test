@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <input type="text" class="form-control"
+      [(ngModel)]="username">
+      <p class="text-primary"
+      *ngIf="username !== ''; else messageErreur"
+      >{{username}}</p>
+      <button type="button" class="btn btn-outline-primary"
+      [disabled]="username === ''"
+      (click)="username = ''"
+      >Clear Username</button>
+      <ng-template #messageErreur>
+        <div class="bg-info">
+          <p class="text-danger">Pas de username</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
