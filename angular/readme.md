@@ -575,6 +575,8 @@ Plus tard nous verrons le concept de service qui permet à plusieurs componsent 
 
 ### Exercise : [Log](exercises/log/readme.md)
 
+Pour le prochain exercise nous allons l'utiliser dans la section sur le routage pour transformer l'application initial en une application comportant plusieurs pages
+
 ### Exercise [employees](exercises/employees/readme.md)
 
 # NgInit et autre 
@@ -753,8 +755,8 @@ export class AppModule { }
 
 Le module principal de notre application n'a pas encore de configuration d'itinéraire. La variable routes dans AppRoutingModule est un tableau vide. Commençons par le remplir de valeurs :
 
-```html
-Créez deux composants angulaires, un nommé user-list et un autre nommé user-detail.
+> * Ajoutez a l'application employees un nouveau component "aide"
+>   * Dans le component aide mettre simplement un titre "Manuel de l'employe"
 
 Note importante :
 
@@ -769,7 +771,7 @@ La route des users activera UserListComponent, et la route du user activera User
 ```typescript
 const routes: Routes = [
   { path: 'users', component: UsersListComponent },
-  { path: 'user', component: UserDetailComponent }
+  { path: 'aide', component: AideComponent }
 ];
 ```
 Maintenant que nous avons configuré le routage de notre application, nous devons simplement apprendre à naviguer vers une route spécifique.
@@ -785,11 +787,11 @@ Commençons :
 ```html
 <nav>
   <a routerLink="/users">Users</a>
-  <a routerLink="/user">User</a>
+  <a routerLink="/aide">Aide</a>
 </nav>
 <router-outlet></router-outlet>
 ```
-Nous sommes maintenant prêts à prévisualiser notre application Angular. Exécutez ng serve et cliquez sur le lien Users. L'application doit afficher le modèle de UsersListComponent sous l'élément nav. Il doit également mettre à jour l'URL du navigateur pour qu'elle corresponde au chemin de l'itinéraire. Maintenant, essayez de faire le contraire. Accédez au chemin racine, http: // localhost: 4200, et ajoutez le chemin /users à la fin de l'URL.
+Nous sommes maintenant prêts à prévisualiser notre application Angular. Exécutez ng serve et cliquez sur le lien Users. L'application doit afficher le modèle de UsersListComponent sous l'élément nav. Il doit également mettre à jour l'URL du navigateur pour qu'elle corresponde au chemin de l'itinéraire. Maintenant, essayez de faire le contraire. Accédez au chemin racine, http://localhost:4200, et ajoutez le chemin /users à la fin de l'URL.
 
 ***
 ## Modules de routage
@@ -824,10 +826,9 @@ Maintenant que nous avons créé notre module de fonctionnalités et le module d
 Déplacez les dossiers de la liste des users et des détails des users dans le dossier des users.
 Supprimez les déclarations UserListComponent et UserDetailComponent d'AppModule et ajoutez-les à la propriété declarations de UsersModule. N'oubliez pas de déplacer leurs instructions d'importation en haut du fichier.
 
-Prenez le contenu de la variable routes dans le fichier app-routing.module.ts et déplacez-le vers la propriété respective du fichier users-routing.module.ts. N'oubliez pas de déplacer à nouveau les instructions d'importation associées. La configuration de la route d'AppRoutingModule doit maintenant être un tableau vide.
+Prenez le contenu de la variable routes dans le fichier app-routing.module.ts et déplacez-le vers la propriété respective du fichier users-routing.module.ts. N'oubliez pas de déplacer à nouveau les instructions d'importation associées. La configuration de la route d'AppRoutingModule doit maintenant just contenir le module aide.
 
 Enfin, ajoutez UsersModule au-dessus de AppRoutingModule dans la propriété importations d'AppModule.
-
 
 >Note importante
 >L'ordre dans lequel nous importons les modules de routage est important. Le routeur sélectionne un itinéraire avec une stratégie de premier match gagne. Nous plaçons des modules de routage de fonctionnalités qui contiennent des routes plus spécifiques avant le module de routage d'application principal qui contient des routes plus génériques, telles qu'une route générique. Ainsi, nous voulons forcer le routeur à rechercher d'abord dans nos chemins d'itinéraire spécifiques, puis à revenir à un chemin spécifique à l'application.
@@ -938,12 +939,11 @@ Il convient de noter que le tableau des paramètres de liaison peut également �
 Jusqu'à présent, nous nous sommes appuyés sur la barre d'adresse du navigateur pour indiquer quel chemin d'itinéraire est actif à un moment donné. Nous pourrions améliorer l'expérience utilisateur en utilisant le style CSS pour ce faire.
 
 ***
-# point-12
 ### Décorer les liens de routeur avec style
 
-RouterModule exporte la directive routerLinkActive, que nous pouvons utiliser pour changer le style d'une route active. Cela fonctionne de manière similaire à la liaison de classe que nous avons apprise au chapitre 3, Interaction des composants et inter-communication. Il accepte une liste de noms de classe ou une seule classe qui est ajoutée lorsque le lien est actif et est supprimée lorsqu'elle est inactive:
+RouterModule exporte la directive routerLinkActive, que nous pouvons utiliser pour changer le style d'une route active. Cela fonctionne de manière similaire à la liaison de classe, Interaction des composants et inter-communication. Il accepte une liste de noms de classe ou une seule classe qui est ajoutée lorsque le lien est actif et est supprimée lorsqu'elle est inactive:
 
-1. Ouvrez le fichier app.component.css et définissez une classe active qui définit la couleur d'arrière-plan sur une valeur de votre choix:
+1. ~~Ouvrez le fichier `app.component.css` et définissez une classe active qui définit la couleur d'arrière-plan sur une valeur de votre choix:~~
 ```css
 .active {
   background-color: lightgray;
@@ -962,7 +962,6 @@ Désormais, lorsque nous cliquons sur un lien dans notre application, sa couleur
 Nous avons déjà appris que nous pouvons naviguer vers une route avec une valeur de chemin statique. Dans le point suivant, nous apprendrons comment faire cela lorsque le chemin change en passant dynamiquement les paramètres d'itinéraire.
 
 ***
-# point-13
 ### Passer des paramètres aux routes
 
 Un scénario courant dans les applications Web est d'avoir une liste d'éléments, et lorsque vous cliquez sur l'un d'entre eux, la page change la vue actuelle et affiche les détails de l'élément sélectionné. Cela ressemble à une fonctionnalité de navigation maître-détails, où chaque URL générée vivant dans la page maître contient les identifiants requis pour charger chaque élément dans la page de détails.
@@ -972,7 +971,6 @@ Nous pouvons représenter le scénario précédent avec deux routes qui naviguen
 Nous nous attaquons ici à un double problème: créer des URL avec des paramètres dynamiques lors de l'exécution et analyser la valeur de ces paramètres. Pas de problème: le routeur Angular nous soutient, et nous verrons comment utiliser un exemple réel.
 
 ***
-# point-14
 ### Création d'une page de détail à l'aide des paramètres d'itinéraire
 
 Nous devons refactoriser le projet Angular CLI sur lequel nous travaillons afin de reproduire le scénario précédent. Le flux de notre application doit être le suivant:
@@ -1001,55 +999,32 @@ Si nous exécutons l'application et cliquons sur le nom d'un héros, cela ne fai
 
 UserDetailComponent doit obtenir la valeur du paramètre id et faire une requête HTTP à l'API backend pour récupérer le user avec cet identifiant particulier. Enfin, il convient de définir le user retourné dans une propriété de composant afin que nous puissions afficher ses détails dans le modèle du composant:
 
-1. Supprimez l'élément d'ancrage qui pointe vers l'itinéraire du héros du modèle d'AppComponent.
-2. Ajoutez une méthode getUser à UserService qui utilise le client HTTP pour obtenir des détails sur un héros particulier. La méthode doit renvoyer un Observable de type User:
-
-```typescript
-getUser(id: number): Observable<User> {
-  return this.http.get<User>(this.usersUrl + id);
-}
-```
 3. RouterModule exporte le service ActivatedRoute, que nous pouvons utiliser pour récupérer des informations sur la route actuellement active, y compris tous les paramètres. Injectez le service ActivatedRoute dans le constructeur de UserDetailComponent:
 
 ```typescript
 constructor(private route: ActivatedRoute) { }
 ```
-4. Créez une propriété user dans le composant et utilisez l'interpolation pour afficher sa propriété name dans le modèle du composant:
-
-```html
-<p>{{user?.name}} works!</p>
-```
-
-Le caractère ? que nous avons ajouté à la propriété user est appelé un opérateur de navigation sécurisé. Il est utilisé pour protéger notre composant contre les valeurs nulles ou non définies de la propriété user. 
-
-Si nous n'utilisons pas cet opérateur, le retard que nous subissons à cause de la requête HTTP cassera notre modèle. Le modèle essaiera d'afficher la propriété name d'un objet user qui n'a pas encore été défini et générera une erreur. Alternativement, nous aurions pu utiliser la directive ngIf dans l'élément de paragraphe pour éviter ce type d'erreur.
-
-Le service ActivatedRoute contient l'observable paramMap, que nous pouvons souscrire pour obtenir les valeurs des paramètres d'itinéraire. UserDetailComponent a besoin d'obtenir la valeur du paramètre id de l'observable paramMap et de faire un appel à la méthode getUser de UserService, qui est également une observable. Alors, comment pouvons-nous accomplir cette tâche?
-
-Nous introduisons un autre opérateur RxJS, switchMap, pour passer d'une observable à l'autre. Nous profitons également de l'opérateur de carte pour définir le user renvoyé par l'API backend sur la propriété du composant de user local:
+4. Le service ActivatedRoute contient l'observable paramMap, que nous pouvons souscrire pour obtenir les valeurs des paramètres d'itinéraire. UserDetailComponent a besoin d'obtenir la valeur du paramètre id de l'observable paramMap et de faire un appel à la méthode getUser de UserService, qui est également une observable. Alors, comment pouvons-nous accomplir cette tâche?
 
 ```typescript
-ngOnInit(): void {
-  this.getUserObs();
-}
-private getUserObs() {
-  this.route.paramMap.pipe(
-    switchMap((params: ParamMap) => {
-      const id = +params.get('id');
-      return this.userService.getUser(id);
-    }),
-    map(user=> this.user= user)
-  ).subscribe();
-}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(
+      (params: ParamMap) => {
+        const param = params.get('id');
+        if (param !== null) {
+          this.employee_id = parseInt(param, 10);
+          this.empService.getEmployeeById(this.employee_id).subscribe(
+            employe => this.employe = employe
+          );
+        }
+      }
+    );
+  }
 ```
-
-L'avantage de l'utilisation de l'opérateur switchMap est qu'il peut annuler toutes les requêtes HTTP en attente. Autrement dit, si l'utilisateur renoue avec le même chemin de route avec un identifiant différent et que la requête HTTP précédente n'est pas encore terminée, il rejette l'ancienne requête et poursuit avec la nouvelle.
 
 Dans l'extrait de code précédent, il convient de noter ce qui suit:
 
 * L'observable paramMap renvoie un objet de type ParamMap. Nous pouvons utiliser la méthode get de l'objet ParamMap et passer le nom du paramètre que nous avons défini dans la configuration de l'itinéraire pour accéder à sa valeur.
-
-* Nous ajoutons le signe plus devant le paramètre id pour le convertir d'une chaîne en un nombre.
 
 Exécutez l'application en utilisant ng serve et cliquez sur le nom d'un user dans la liste. L'application accède à UserDetailComponent et affiche le nom du User sélectionné. Nous avons intégré avec succès le routage et HTTP dans notre application Angular 10. Impressionnant!
 
@@ -1057,7 +1032,7 @@ Dans l'exemple précédent, nous avons utilisé paramMap pour obtenir les param�
 
 Le routeur peut réutiliser l'instance d'un composant dès qu'elle reste rendue à l'écran lors de navigations consécutives. Nous pouvons réaliser ce comportement en utilisant des routes enfants.
 ***
-# point-15
+
 ### Réutilisation de composants à l'aide d'itinéraires enfants
 
 Nous utilisons des routes enfants lorsque nous voulons définir un composant de conteneur pour un module de fonctionnalité qui agira en tant qu'orchestrateur de routage pour les composants de ce module. Il contient un élément de sortie de routeur dans lequel les routes enfants seront chargées. Supposons que nous voulions définir la disposition de notre application Angular comme suit:
@@ -1110,7 +1085,6 @@ Dans ce cas, nous passons un objet NavigationExtras supplémentaire après le ta
 
 Nous avons appris comment tirer parti de l'observable paramMap dans le routage angulaire. Cela n'apporte clairement aucun avantage à notre application Angular. Dans la section suivante, nous discuterons d'une approche alternative utilisant des instantanés d'itinéraire.
 ***
-# point-16
 ### Prendre un instantané (snapshot) des paramètres de routage
 
 Actuellement, lorsque nous sélectionnons un user dans la liste, UserListComponent est supprimé de l'arborescence DOM et UserDetailComponent est ajouté. Pour sélectionner un autre user, nous cliquons sur le lien Users ou sur le bouton Précédent de notre navigateur. Par conséquent, UserDetailComponent est supprimé du DOM et UserListComponent est ajouté. Nous sommes donc dans une situation où un seul composant est affiché à l'écran à la fois.
@@ -1132,7 +1106,6 @@ La propriété snapshot contient toujours la valeur actuelle d'un paramètre d'i
 Jusqu'à présent, nous avons traité des paramètres de routage sous la forme users/:id. Nous utilisons ces types de paramètres lorsque nous voulons acheminer vers un composant qui nécessite que le paramètre fonctionne correctement. Dans notre cas, UserDetailComponent a besoin du paramètre id pour pouvoir obtenir les détails d'un héros spécifique. Cependant, il existe un autre type de paramètre considéré comme facultatif, comme nous l'apprendrons dans la section suivante.
 
 ***
-# point-17
 ### Filtrage des données à l'aide des paramètres de requête
 
 Les paramètres de requête sont considérés comme des paramètres facultatifs car ils visent à trier les données ou à réduire la taille d'un ensemble de données. Quelques exemples sont les suivants:
@@ -1143,7 +1116,7 @@ Les paramètres de requête sont considérés comme des paramètres facultatifs 
 Les paramètres de requête sont reconnus dans une route par le caractère ? . Nous pouvons combiner plusieurs paramètres de requête en les chaînant avec un caractère esperluette (&). 
 Le service ActivatedRoute contient une observable queryParamMap que nous pouvons souscrire pour obtenir les valeurs des paramètres de requête. Il renvoie un objet ParamMap, similaire à l'observable paramMap, que nous pouvons interroger pour obtenir les valeurs des paramètres. Par exemple, pour récupérer la valeur d'un paramètre de requête sortOrder, nous l'utiliserons comme suit:
 
-```java
+```typescript
 constructor(private route: ActivatedRoute) { }
 ngOnInit(): void {
   this.route.queryParamMap.subscribe(params => {

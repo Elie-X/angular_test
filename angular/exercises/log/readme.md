@@ -7,7 +7,7 @@ Dans cette exercise nous mettrons en pratiques différents types de bindings et 
 * Lorsque le bouton est cliqué vous devez sauvegarder le text contenu dans l'input ainsi que l'heure courrante dans la classe du parent
   * NOTE: Si il n'y a pas de contenu dans l'input vous ne devez pas pouvoir cliquer sur le bouton add
 * Créer un component tableau
-  * Utiliser la
+  * Utiliser les classes bootstrap pour afficher votre tableau (libre de prendre le style que vous préférez)
   * Le component tableau doit recevoir un vecteur de log du parent. Ce vecteur doit contenir:
     * Date de l'événement
     * heure de l'événement
