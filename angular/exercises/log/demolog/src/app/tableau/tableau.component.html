@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Heure</th>
+        <th scope="col">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of logs_to_child; index as idx"
+      [ngClass]="{'fw-bold': idx < 5, 'bg-danger': plusVieuxque1Min(event.date)}"
+      >
+        <td>{{event.date.toLocaleDateString()}}</td>
+        <td>{{event.date.toLocaleTimeString()}}</td>
+        <td>{{event.message}}</td>
+      </tr>
+    </tbody>
+  </table>

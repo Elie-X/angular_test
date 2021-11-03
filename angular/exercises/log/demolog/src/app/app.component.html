@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <app-bouton
+        (message_parent)="recoitMessage($event)"
+      ></app-bouton>
+    </div>
+    <div class="col-6">
+      <app-tableau
+        [logs_to_child]="logs"
+      ></app-tableau>
+    </div>
+  </div>
+</div>
