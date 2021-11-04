@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+
+class Usager {
+  id : INTEGER
+  ..
+  nom : INTEGER
+  prenom : INTEGER
+  address : ADDRESS
+  Employer : INTEGER
+}
+
+class Employeur {
+  id : INTEGER
+  ..
+  nom : INTEGER
+  address : ADDRESS
+}
+
+class Adress {
+    id : INTEGER
+  rue : INTEGER
+  code_postal : INTEGER
+  ville : INTEGER
+}
+
+Usager::id *-- Adress::id
+Usager::Employer *-- Employeur::id
+@enduml
