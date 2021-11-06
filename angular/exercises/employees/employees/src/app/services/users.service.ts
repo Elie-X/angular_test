@@ -16,6 +16,7 @@ export class EmployeeService {
     // npm install @types/faker --save
     // npm i --save-dev @types/faker
     for(let i=0;i<20;i++) {
+        //let mon_test = faker.vehicle.manufacturer()
         console.log(faker.name.firstName());
         this.liste_employees.push(
             {
@@ -39,5 +40,17 @@ export class EmployeeService {
           }
       )
   }
+
+  public getEmployeeById(id: number): Observable<Employee> {
+    return new Observable<Employee>(
+        (observable) => {
+            observable.next(
+                this.liste_employees.filter(emp => emp.id === id)[0]
+                );
+            observable.complete();
+        }
+    )
+}
+
 
 }

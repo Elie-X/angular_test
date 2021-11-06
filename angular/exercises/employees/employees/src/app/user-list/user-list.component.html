@@ -1,2 +1,11 @@
-Afficher la liste de nom des employee (juste le nom)
-Et passer le number ID de l'employé au component app-user-detail
+<p>
+    Afficher la liste de nom des employee (juste le nom)
+    Et passer le number ID de l'employé au component app-user-detail
+</p>
+
+<div class="text-danger" *ngFor="let employee of employees">
+    {{employee.first_name}} {{employee.last_name}}
+    <app-user-detail
+    [employee_id]="employee.id"
+    ></app-user-detail>
+</div>

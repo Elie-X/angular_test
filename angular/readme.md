@@ -1128,11 +1128,28 @@ ngOnInit(): void {
 Une propriété queryParamMap est également disponible lorsque vous travaillez avec le routage des instantanés pour obtenir les valeurs des paramètres de requête.
 
 ***
+
+### Exercise: Recapitulation Route
+
+Synopsis
+> Nous allons creer un application qui regroupe les differents exercises en utilisant le routing
+> * Creer un nouveau projet demo avec routing
+> * Dans cette appication vous devez avoir une barre de navigation qui vous permet d'aller aux differents exercise produit
+> * Include les exercise binding, log, resultats dans votre application
+>   * Vous devrez creer une structure permettant de restructurer les applications pour les avoir tous dans votre nouvelle application
+> * Avec le routing ajouter un lien dans votre barre de navigation pour se rendre a chaque application
+> * Creer une page de default qui affiche une image de chaque applicatione et un mot de bienvenu
+> * Faites en sorte que si l'utilisateur click sur l'image il soit dirige vers l'application mais si l'utilisateur utilise cette approche changer la couleur de fond de l'application pour un bleu
+> * Creer une page d'erreur si quelqu'un se rend sur votre site pour une route invalide
+> * 
+
+DIDIER: ICI
+
 # point-18
 ### Contrôle de l'accès à une route
 Lorsque nous voulons empêcher l'accès non autorisé à une route particulière, nous utilisons un service Angular spécifique appelé garde. Pour créer une garde, nous utilisons la commande generate de la CLI angulaire, en passant le mot guard et son nom comme paramètres:
 
-```java
+```shell
 ng generate guard auth
 ```
 Il existe plusieurs types de protecteurs que nous pouvons créer en fonction des fonctionnalités qu'ils fournissent. Chaque garde implémente une interface différente:
@@ -1487,6 +1504,8 @@ Ici le CLI va créer un nouveau module exportant un class au nom de ce service. 
   - [ ] Create an example with error that need to be fixed (Logical et Initialisation error)
   - [ ] Show Augury
 - [ ] Testing
+- [ ] Cree un attribute ou component directive?
+- [ ] 
 
 
 
