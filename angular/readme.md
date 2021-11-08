@@ -1145,7 +1145,133 @@ Synopsis
 
 DIDIER: ICI
 
-# point-18
+# Formulaire
+
+[Documentation](https://angular.io/guide/form-validation)
+
+## Validation "a la javascript"
+
+* Comment proceder
+* 
+
+## Validation avec ngForm
+
+* How do to that?
+* Class helper
+
+## Validation avec validation and formgroup
+
+* Validator function
+* How to create a validator
+* 
+
+# Services
+
+Le concept de service permet de créer un objet qui est accessible par tous les components pour échanger de l'information
+
+
+## Creation d'un service
+
+La commande `ng generate service <nom du service> va créer un nouveau service dans notre application pour permettre un tel échange
+
+```Shell
+$ mkdir services
+Gitbash recettes (main)
+$ ng generate service services/recette
+CREATE src/app/services/recette.service.spec.ts (362 bytes)
+CREATE src/app/services/recette.service.ts (136 bytes)
+```
+
+Ici le CLI va créer un nouveau module exportant un class au nom de ce service. Cette class inclue le module Observable provenant de la librairie rsjs qui permet de créer un mécanisme asynchrone pour échanger des information. Similar au mécanism de promise.
+
+[Documentation](https://angular.io/guide/observables)
+
+```Typescript
+  getAllReceipes(): Observable<Recette []> {
+    return new Observable<Recette []>(
+      (observable) => {
+        // Retourne l'information lorsque disponible
+        // Ici pour cette exemple l'information est déjà disponible, en temps normal ici on pourrait y mettre
+        // du code pour récupérer sur un serveur et effectuer le complete lorsque terminé
+        observable.next(this.recettes);
+        // Indique que l'operation est complété
+        observable.complete();
+      }
+    )
+  }
+```
+
+# Elements de Navigation
+
+# Pipe fitre
+
+# RxJS
+
+
+
+
+
+
+
+
+
+```Typescript
+```
+
+```Typescript
+```
+
+```Typescript
+```
+
+
+
+
+### Exercise : [BlackJack](exercises/poker)
+* Creez une application qui permet de jouer au blackjack
+
+
+
+
+### Progression TP Final: Suivant la meme structure démontré pour les recettes créez une application affichant un journal de voyage.
+
+> * Creez le git `pratique-pour-tp` un nouveau projet Angular
+> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
+>   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
+> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas à vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
+
+> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évalué avec le travail de fin d'année.** 
+
+
+
+
+## DIDIER TO ADD Cover
+
+
+
+- [ ] Barre de navigation
+- [ ] Model
+- [ ] Directive
+- [ ] CSS
+- [ ] Form Validation methods
+- [ ] Service
+- [ ] Event Emitter
+- [ ] Observable
+- [ ] RxJS - Chat app?
+  - [ ] Mouse move?
+- [ ] Filter | Pipe
+- [ ] Debuggint
+  - [ ] Create an example with error that need to be fixed (Logical et Initialisation error)
+  - [ ] Show Augury
+- [ ] Testing
+- [ ] Cree un attribute ou component directive?
+- [ ] 
+
+
+
+
+# Router a bit more advance notion
+
 ### Contrôle de l'accès à une route
 Lorsque nous voulons empêcher l'accès non autorisé à une route particulière, nous utilisons un service Angular spécifique appelé garde. Pour créer une garde, nous utilisons la commande generate de la CLI angulaire, en passant le mot guard et son nom comme paramètres:
 
@@ -1400,112 +1526,6 @@ Si vous quittez et cliquez à nouveau sur le lien À propos, vous remarquerez qu
 Un mot d'avertissement, cependant. Un service angulaire est enregistré auprès de l'injecteur racine de l'application à l'aide de la propriété providedIn du décorateur @Injectable. Les modules à chargement différé créent un injecteur distinct qui est un enfant immédiat de l'injecteur d'application racine. Si vous utilisez un service Angular enregistré avec l'injecteur d'application racine dans un module à chargement différé, vous vous retrouverez avec une instance distincte du service dans les deux cas. Donc, nous devons être prudents quant à la façon dont nous utilisons les services dans les modules chargés paresseusement.
 
 Les modules à chargement différé sont des modules angulaires standard, nous pouvons donc contrôler leur accès à l'aide de gardes.
-
-
-
-# Formulaire
-
-# Services
-
-Le concept de service permet de créer un objet qui est accessible par tous les components pour échanger de l'information
-
-
-## Creation d'un service
-
-La commande `ng generate service <nom du service> va créer un nouveau service dans notre application pour permettre un tel échange
-
-```Shell
-$ mkdir services
-Gitbash recettes (main)
-$ ng generate service services/recette
-CREATE src/app/services/recette.service.spec.ts (362 bytes)
-CREATE src/app/services/recette.service.ts (136 bytes)
-```
-
-Ici le CLI va créer un nouveau module exportant un class au nom de ce service. Cette class inclue le module Observable provenant de la librairie rsjs qui permet de créer un mécanisme asynchrone pour échanger des information. Similar au mécanism de promise.
-
-[Documentation](https://angular.io/guide/observables)
-
-```Typescript
-  getAllReceipes(): Observable<Recette []> {
-    return new Observable<Recette []>(
-      (observable) => {
-        // Retourne l'information lorsque disponible
-        // Ici pour cette exemple l'information est déjà disponible, en temps normal ici on pourrait y mettre
-        // du code pour récupérer sur un serveur et effectuer le complete lorsque terminé
-        observable.next(this.recettes);
-        // Indique que l'operation est complété
-        observable.complete();
-      }
-    )
-  }
-```
-
-# Elements de Navigation
-
-# Pipe fitre
-
-# RxJS
-
-
-
-
-
-
-
-
-
-```Typescript
-```
-
-```Typescript
-```
-
-```Typescript
-```
-
-
-
-
-### Exercise : [BlackJack](exercises/poker)
-* Creez une application qui permet de jouer au blackjack
-
-
-
-
-### Progression TP Final: Suivant la meme structure démontré pour les recettes créez une application affichant un journal de voyage.
-
-> * Creez le git `pratique-pour-tp` un nouveau projet Angular
-> * Créez un repertoire model dans lequel vous allez mettre le model que vous avez créé dans un exercise précédent pour le **Journal de voyage**
->   * Voir [Recettes](../typescript/exercises/Recettes/readme.md)
-> * Créez une premiere version ou vous affichez une vue des différents voyages. Vous n'avez pas à vous préoccupé de la forme juste afficher les informations sommaire et pas besoin d'images pour le moment. Aux cours des differents cours vous aurez l'occasion de modifier cette base en une application plus fonctionnel.
-
-> **Pour le journal de voyage, il n'y aura pas de corrigé fourni. Cette composante est un élément qui fait parti du TP final et sera à intégrer et évalué avec le travail de fin d'année.** 
-
-
-
-
-## DIDIER TO ADD Cover
-
-
-
-- [ ] Barre de navigation
-- [ ] Model
-- [ ] Directive
-- [ ] CSS
-- [ ] Form Validation methods
-- [ ] Service
-- [ ] Event Emitter
-- [ ] Observable
-- [ ] RxJS - Chat app?
-  - [ ] Mouse move?
-- [ ] Filter | Pipe
-- [ ] Debuggint
-  - [ ] Create an example with error that need to be fixed (Logical et Initialisation error)
-  - [ ] Show Augury
-- [ ] Testing
-- [ ] Cree un attribute ou component directive?
-- [ ] 
 
 
 
